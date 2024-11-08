@@ -1,21 +1,13 @@
 package data;
 
-import data.Pasien;
-
 public class Dokter extends Orang {
-    private String idDokter;
     private String spesialisasi;
     private int tahunPengalaman;
 
     public Dokter(String nama, int umur, String jenisKelamin, String alamat, String nomorKontak, String idDokter, String spesialisasi, int tahunPengalaman) {
-        super(nama, umur, jenisKelamin, alamat, nomorKontak);
-        this.idDokter = idDokter;
+        super(nama, umur, jenisKelamin, alamat, nomorKontak, idDokter);
         this.spesialisasi = spesialisasi;
         this.tahunPengalaman = tahunPengalaman;
-    }
-
-    public String getIdDokter() {
-        return idDokter;
     }
 
     public String getSpesialisasi() {

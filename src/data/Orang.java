@@ -7,13 +7,15 @@ public abstract class Orang {
     private String jenisKelamin;
     private String alamat;
     private String nomorKontak;
+    private String id;
 
-    public Orang(String nama, int umur, String jenisKelamin, String alamat, String nomorKontak) {
+    public Orang(String nama, int umur, String jenisKelamin, String alamat, String nomorKontak, String id) {
         this.nama = nama;
         this.umur = umur;
         this.jenisKelamin = jenisKelamin;
         this.alamat = alamat;
         this.nomorKontak = nomorKontak;
+        this.id = id;
     }
 
     public String getNama() {
@@ -36,6 +38,10 @@ public abstract class Orang {
         return nomorKontak;
     }
 
+    public String getId(){
+        return id;
+    }
+
     public void setNama(String nama) {
         this.nama = nama;
     }
@@ -55,6 +61,9 @@ public abstract class Orang {
     public void setNomorKontak(String nomorKontak) {
         this.nomorKontak = nomorKontak;
     }
+
+
+    
 
     public void getDetail() {
         System.out.println("Nama: " + nama);
