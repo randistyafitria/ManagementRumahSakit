@@ -1,11 +1,12 @@
 package data;
 
-public class Orang {
-    protected String nama;
-    protected int umur;
-    protected String jenisKelamin;
-    protected String alamat;
-    protected String nomorKontak;
+
+public abstract class Orang {
+    private String nama;
+    private int umur;
+    private String jenisKelamin;
+    private String alamat;
+    private String nomorKontak;
 
     public Orang(String nama, int umur, String jenisKelamin, String alamat, String nomorKontak) {
         this.nama = nama;
@@ -17,6 +18,42 @@ public class Orang {
 
     public String getNama() {
         return nama;
+    }
+
+    public int getUmur() {
+        return umur;
+    }
+
+    public String getJenisKelamin() {
+        return jenisKelamin;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public String getNomorKontak() {
+        return nomorKontak;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public void setUmur(int umur) {
+        this.umur = umur;
+    }
+
+    public void setJenisKelamin(String jenisKelamin) {
+        this.jenisKelamin = jenisKelamin;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
+    public void setNomorKontak(String nomorKontak) {
+        this.nomorKontak = nomorKontak;
     }
 
     public void getDetail() {

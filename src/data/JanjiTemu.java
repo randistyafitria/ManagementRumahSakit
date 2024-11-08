@@ -15,7 +15,15 @@ public class JanjiTemu {
         this.pasien = pasien;
     }
 
+    public String getIdJanjiTemu(){
+        return idJanjiTemu;
+    }
+
+    public Date getTanggalJanjiTemu(){
+        return tanggalJanjiTemu;
+    }
+
     public void konfirmasiJanjiTemu() {
-        System.out.println("Janji temu antara pasien " + pasien.getNama() + " dengan dokter " + dokter.nama + " telah dikonfirmasi.");
+        System.out.println("Janji temu antara pasien " + pasien.getNama() + " dengan dokter " + dokter.getNama() + " telah dikonfirmasi.");
     }
 }
