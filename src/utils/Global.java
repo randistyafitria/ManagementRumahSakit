@@ -2,6 +2,7 @@ package utils;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 import data.Dokter;
 import data.Perawat;
@@ -26,6 +27,21 @@ public class Global {
     }
 
 
+    public static String generateId(String code){
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        sb.append(code);
+        for (int i = 0; i < 6; i++) {
+            int index = random.nextInt(characters.length());
+            sb.append(characters.charAt(index));
+        }
+
+        System.out.println("sdo");
+        return sb.toString();
+    }
+
+
     public static void tambahDokter() {
         try {
             System.out.println("\n=== Tambah Dokter ===");
@@ -45,10 +61,7 @@ public class Global {
     
             System.out.print("Nomor Kontak Dokter: ");
             String nomorKontak = scanner.nextLine();
-    
-            System.out.print("ID Dokter: ");
-            String idDokter = scanner.nextLine();
-    
+
             System.out.print("Spesialisasi: ");
             String spesialisasi = scanner.nextLine();
     
@@ -56,7 +69,7 @@ public class Global {
             int tahunPengalaman = scanner.nextInt();
             scanner.nextLine();
     
-            Dokter dokter = new Dokter(nama, umur, jenisKelamin, alamat, nomorKontak, idDokter, spesialisasi, tahunPengalaman);
+            Dokter dokter = new Dokter(nama, umur, jenisKelamin, alamat, nomorKontak, generateId("DR"), spesialisasi, tahunPengalaman);
             daftarDokter.add(dokter);
             System.out.println("Dokter berhasil ditambahkan.");
         } 
@@ -90,16 +103,13 @@ public class Global {
             System.out.print("Nomor Kontak Pasien: ");
             String nomorKontak = scanner.nextLine();
     
-            System.out.print("ID Pasien: ");
-            String idPasien = scanner.nextLine();
-    
             System.out.print("Riwayat Medis: ");
             String riwayatMedis = scanner.nextLine();
     
             System.out.print("Kondisi Saat Ini: ");
             String kondisiSaatIni = scanner.nextLine();
     
-            Pasien pasien = new Pasien(nama, umur, jenisKelamin, alamat, nomorKontak, idPasien, riwayatMedis, kondisiSaatIni);
+            Pasien pasien = new Pasien(nama, umur, jenisKelamin, alamat, nomorKontak, generateId("PA"), riwayatMedis, kondisiSaatIni);
             daftarPasien.add(pasien);
             System.out.println("Pasien berhasil ditambahkan.");
         } 
@@ -131,10 +141,10 @@ public class Global {
             System.out.print("Nomor Kontak Perawat: ");
             String nomorKontak = scanner.nextLine();
     
-            System.out.print("ID Perawat: ");
-            String idPerawat = scanner.nextLine();
+            System.out.print("Spesialisasi: ");
+            String spesialisasi = scanner.nextLine();
     
-            Perawat perawat = new Perawat(nama, umur, jenisKelamin, alamat, nomorKontak, idPerawat);
+            Perawat perawat = new Perawat(nama, umur, jenisKelamin, alamat, nomorKontak,generateId("PR"), spesialisasi);
             daftarPerawat.add(perawat);
             System.out.println("Perawat berhasil ditambahkan.");
         } 
@@ -166,10 +176,7 @@ public class Global {
             System.out.print("Nomor Kontak Resepsionis: ");
             String nomorKontak = scanner.nextLine();
     
-            System.out.print("ID Karyawan Resepsionis: ");
-            String idKaryawan = scanner.nextLine();
-    
-            Resepsionis resepsionis = new Resepsionis(nama, umur, jenisKelamin, alamat, nomorKontak, idKaryawan);
+            Resepsionis resepsionis = new Resepsionis(nama, umur, jenisKelamin, alamat, nomorKontak, generateId("RP"));
             daftarResepsionis.add(resepsionis);
             System.out.println("Resepsionis berhasil ditambahkan.");
         } catch (Exception e) {
