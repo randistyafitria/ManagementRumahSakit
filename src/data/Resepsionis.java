@@ -1,5 +1,6 @@
 package data;
 
+
 public class Resepsionis extends Orang {
     private String idKaryawan;
 
@@ -8,7 +9,11 @@ public class Resepsionis extends Orang {
         this.idKaryawan = idKaryawan;
     }
 
+    public String getIdKaryawan(){
+        return idKaryawan;
+    }
+
     public void jadwalkanJanjiTemu(Pasien pasien, Dokter dokter) {
-        System.out.println("Resepsionis " + nama + " menjadwalkan janji temu antara pasien " + pasien.getNama() + " dengan dokter " + dokter.nama);
+        System.out.println("Resepsionis " + getNama() + " menjadwalkan janji temu antara pasien " + pasien.getNama() + " dengan dokter " + dokter.getNama());
     }
 }
