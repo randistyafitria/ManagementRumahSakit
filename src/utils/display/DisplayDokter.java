@@ -1,6 +1,7 @@
 package utils.display;
 
 import data.Dokter;
+import data.JanjiTemu;
 import utils.Global;
 import data.Pasien;
 
@@ -27,6 +28,11 @@ public class DisplayDokter {
                     d.getDetail();
                     break;
                 case 2:
+                    for(JanjiTemu jt : Global.daftarJanjiTemu){
+                        if(jt.getDokter().equals(d)){
+                            jt.getDetail();
+                        }
+                    }
                     break;
                 case 3: 
                     displayPasienDokter(d);
@@ -40,10 +46,17 @@ public class DisplayDokter {
     }
 
     public static void displayPasienDokter(Dokter d){
-        ArrayList<Pasien> pasienList = Global.dokterListPasien.get(d.getId());
+        
+        if(Global.dokterListPasien.containsKey(d.getId())){
+            ArrayList<Pasien> pasienList = Global.dokterListPasien.get(d.getId());
 
-        for(Pasien p : pasienList){
-            p.getDetail();
+            for(Pasien p : pasienList){
+                p.getDetail();
+            }
         }
+        else{
+            System.out.println("Tidak ada pasien yang di assign ke anda");
+        }
+
     }
 }

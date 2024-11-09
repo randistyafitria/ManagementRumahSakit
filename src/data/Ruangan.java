@@ -22,6 +22,10 @@ public class Ruangan {
         return tipeRuangan;
     }
 
+    public Boolean getIsTersedia(){
+        return isTersedia;
+    }
+
     public void setTipeRuangan(String tipeRuangan) {
         this.tipeRuangan = tipeRuangan;
     }

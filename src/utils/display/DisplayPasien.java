@@ -1,6 +1,10 @@
 package utils.display;
 
 import data.Pasien;
+import data.Ruangan;
+import data.Dokter;
+import data.JanjiTemu;
+
 import utils.Global;
 
 public class DisplayPasien {
@@ -13,6 +17,8 @@ public class DisplayPasien {
             System.out.println("2. Lihat Jadwal Janji Temu");
             System.out.println("====================================");
             choice = Global.scanner.nextInt();
+            Global.scanner.nextLine();
+
 
             switch (choice) {
                 case 0:
@@ -21,6 +27,11 @@ public class DisplayPasien {
                     p.getDetail();
                     break;
                 case 2:
+                    for(JanjiTemu jt : Global.daftarJanjiTemu){
+                        if(jt.getPasien().equals(p)){
+                            jt.getDetail();
+                        }
+                    }
                     break;
                 
             
@@ -32,11 +43,29 @@ public class DisplayPasien {
     }
 
     public static void displayAssignPasien(){
-        System.out.print("Masukkan ID Dokter yang akan di assign: ");
-        String idDokter = Global.scanner.nextLine();
+        System.out.println("Masukkan Id / Nama Dokter");
+        String identifier = Global.scanner.nextLine();
 
-        if(!Global.dokterListPasien.containsKey(idDokter)){
-            System.out.println("Dokter tidak berhasil ditemukan");
+        Dokter dokter = Global.searchDokter(identifier);
+
+        if(dokter == null){
+            System.out.println("Data Dokter tidak ditemukan, Mohon ulangi operasi lagi");
+            return;
         }
+
+        System.out.println("Masukkan Id / Nama Pasien");
+        identifier = Global.scanner.nextLine();
+        Pasien pasien = Global.searchPasien(identifier);
+
+
+        if(pasien == null){
+            System.out.println("Data Pasien tidak ditemukan, Mohon ulangi operasi lagi");
+            return;
+        }
+
+        dokter.getDetail();
+        pasien.getDetail();
+
+        Global.assignDokter(dokter, pasien);
     }
 }

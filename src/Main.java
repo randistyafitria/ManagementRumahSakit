@@ -43,7 +43,9 @@ public class Main {
 
                 case 1:
                     Pasien p = AuthPasien.auth();
+
                     if(p == null){
+                        
                         System.out.println("Data Pasien tidak ditemukan");
                         break;
                     }
