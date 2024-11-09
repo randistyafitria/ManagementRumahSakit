@@ -1,15 +1,25 @@
 import utils.Global;
+
 import utils.auth.AuthDokter;
 import utils.auth.AuthPasien;
 import utils.auth.AuthResepsionis;
-import utils.Display;
-import utils.*;
+
+import utils.display.DisplayAdmin;
+import utils.display.DisplayDokter;
+import utils.display.DisplayPasien;
+import utils.display.DisplayResepsionis;
 
 import test.Init;
+
+import data.Pasien;
+import data.Dokter;
+import data.Resepsionis;
+
 
 
 public class Main {
     public static void main(String[] args) {
+        Init.init();
         int choice = 1;
         while(choice != 0){
             System.out.println("====================================");
@@ -30,17 +40,36 @@ public class Main {
             switch (choice) {
                 case 0:
                     break;
+
                 case 1:
-                    AuthPasien.auth();
+                    Pasien p = AuthPasien.auth();
+                    if(p == null){
+                        System.out.println("Data Pasien tidak ditemukan");
+                        break;
+                    }
+                    DisplayPasien.displayPasien(p);
                     break;
+
                 case 2:
-                    AuthDokter.auth();
+                    Dokter d = AuthDokter.auth();
+                    if(d == null){
+                        System.out.println("Data Dokter tidak ditemukan");
+                        break;
+                    }
+                    DisplayDokter.displayDokter(d);                    
                     break;
+
                 case 3:
-                    AuthResepsionis.auth();
+                    Resepsionis r = AuthResepsionis.auth();
+                    if(r == null){
+                        System.out.println("Data Resepsionis tidak ditemukan");
+                        break;
+                    }
+                    DisplayResepsionis.displayResepsionis(r);                    
                     break;
+
                 case 4:
-                    Display.displayAdmin();
+                    DisplayAdmin.displayAdmin();
                     break;
             
                 default:

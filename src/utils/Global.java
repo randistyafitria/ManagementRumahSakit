@@ -1,14 +1,11 @@
 package utils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Random;
 
-import data.Dokter;
-import data.Perawat;
-import data.Resepsionis;
-import data.Ruangan;
-import data.Pasien;
+import data.*;
 
 public class Global {
     public static ArrayList<Dokter> daftarDokter = new ArrayList<>();
@@ -16,6 +13,10 @@ public class Global {
     public static ArrayList<Perawat> daftarPerawat = new ArrayList<>();
     public static ArrayList<Resepsionis> daftarResepsionis = new ArrayList<>();
     public static ArrayList<Ruangan> daftarRuangan = new ArrayList<>();
+
+    public static ArrayList<JanjiTemu> daftarJanjiTemu = new ArrayList<>();
+
+    public static HashMap<String, ArrayList<Pasien>> dokterListPasien;
 
     public static Scanner scanner = new Scanner(System.in);
 
@@ -232,5 +233,17 @@ public class Global {
         ruangan.tetapkanUntukPasien(pasien);
 
         System.out.println("Janji temu berhasil dijadwalkan antara " + pasien.getNama() + " dan " + dokter.getNama() + ".");
+    }
+
+    public static void assignDokter(Dokter d, Pasien p){
+        if(dokterListPasien.containsKey(d.getId())){
+            dokterListPasien.get(d.getId()).add(p);
+            System.out.println("Pasien Berhasil ditambahkan!");
+            return;
+        }
+        dokterListPasien.put(d.getId(), new ArrayList<>());
+        dokterListPasien.get(d.getId()).add(p);
+
+        System.out.println("Pasien Berhasil di tambahkan");
     }
 }

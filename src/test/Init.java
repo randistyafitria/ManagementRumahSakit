@@ -34,5 +34,7 @@ public class Init {
         
 
         // TODO: Ruangan, Resepsionis, Perawat;
+
+        Global.daftarResepsionis.add(new Resepsionis("Rizky Sigma", 69, "Laki-Laki", "Apa", "923499242", Global.generateId("RS")));
     }
 }
