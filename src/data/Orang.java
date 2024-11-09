@@ -66,6 +66,7 @@ public abstract class Orang {
     
 
     public void getDetail() {
+        System.out.println("ID: " + id);
         System.out.println("Nama: " + nama);
         System.out.println("Umur: " + umur);
         System.out.println("Jenis Kelamin: " + jenisKelamin);

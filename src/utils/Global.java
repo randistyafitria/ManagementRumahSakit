@@ -1,14 +1,17 @@
 package utils;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Random;
 
-import data.Dokter;
-import data.Perawat;
-import data.Resepsionis;
-import data.Ruangan;
-import data.Pasien;
+import data.*;
 
 public class Global {
     public static ArrayList<Dokter> daftarDokter = new ArrayList<>();
@@ -16,6 +19,10 @@ public class Global {
     public static ArrayList<Perawat> daftarPerawat = new ArrayList<>();
     public static ArrayList<Resepsionis> daftarResepsionis = new ArrayList<>();
     public static ArrayList<Ruangan> daftarRuangan = new ArrayList<>();
+
+    public static ArrayList<JanjiTemu> daftarJanjiTemu = new ArrayList<>();
+
+    public static HashMap<String, ArrayList<Pasien>> dokterListPasien = new HashMap<>();
 
     public static Scanner scanner = new Scanner(System.in);
 
@@ -37,7 +44,6 @@ public class Global {
             sb.append(characters.charAt(index));
         }
 
-        System.out.println("sdo");
         return sb.toString();
     }
 
@@ -214,23 +220,68 @@ public class Global {
         }
     }
 
-
-    //need a better way to implement this func, good enough fo now 
-    public static void jadwalkanJanjiTemu() {
-        if (daftarDokter.isEmpty() || daftarPasien.isEmpty() || daftarResepsionis.isEmpty() || daftarRuangan.isEmpty()) {
-            System.out.println("Pastikan semua data sudah ditambahkan terlebih dahulu (Dokter, Pasien, Resepsionis, dan Ruangan).");
-            return;
+    public static Dokter searchDokter(String identifier){
+        identifier = identifier.trim();
+        for(Dokter d : daftarDokter){
+            if(d.getNama().equals(identifier) || d.getId().equals(identifier)){
+                return d;
+            }
         }
 
+        return null;
+    }
 
-        Dokter dokter = daftarDokter.get(0);
-        Pasien pasien = daftarPasien.get(0);
-        Resepsionis resepsionis = daftarResepsionis.get(0);
-        Ruangan ruangan = daftarRuangan.get(0);
+    public static Pasien searchPasien(String identifier){
+        identifier = identifier.trim();
 
-        resepsionis.jadwalkanJanjiTemu(pasien, dokter);
-        ruangan.tetapkanUntukPasien(pasien);
+        for(Pasien p : daftarPasien){
+            if(p.getNama().equals(identifier) || p.getId().equals(identifier)){
+                return p;
+            }
+        }
 
-        System.out.println("Janji temu berhasil dijadwalkan antara " + pasien.getNama() + " dan " + dokter.getNama() + ".");
+        return null;
+    }
+
+
+    public static void jadwalkanJanjiTemu(Dokter dokter, Pasien pasien, Ruangan ruangan, Resepsionis resepsionis) {
+        System.out.print("Enter a date (dd MM yyyy): ");
+        
+        String inputDate = scanner.nextLine();
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
+        
+        try {
+            Date date = dateFormat.parse(inputDate);
+            JanjiTemu janjiTemu = new JanjiTemu(generateId("JT"), date, dokter, pasien);
+
+            System.out.println(date);
+    
+            resepsionis.jadwalkanJanjiTemu(pasien, dokter);
+            ruangan.tetapkanUntukPasien(pasien);
+
+
+            daftarJanjiTemu.add(janjiTemu);
+    
+            System.out.println("Janji temu berhasil dijadwalkan antara " + pasien.getNama() + " dan " + dokter.getNama() + ".");
+        } 
+
+        catch (Exception e) {
+            System.out.println("Input invalid, pastikan gunakan dd MM yyyy.");
+        }
+        
+
+    }
+
+    public static void assignDokter(Dokter d, Pasien p){
+        if(dokterListPasien.containsKey(d.getId())){
+            dokterListPasien.get(d.getId()).add(p);
+            System.out.println("Pasien Berhasil ditambahkan!");
+            return;
+        }
+        dokterListPasien.put(d.getId(), new ArrayList<>());
+        dokterListPasien.get(d.getId()).add(p);
+
+        System.out.println("Pasien Berhasil di tambahkan");
     }
 }

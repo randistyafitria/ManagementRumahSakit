@@ -33,6 +33,32 @@ public class Init {
         Global.daftarPasien.add(new Pasien("Agus Wijaya", 40, "Laki-Laki", "Jl. Raya 18", "238491023", Global.generateId("PA"), "Gastritis", "SAKIT"));
         
 
-        // TODO: Ruangan, Resepsionis, Perawat;
+
+        Global.daftarResepsionis.add(new Resepsionis("Rizky Sigma", 69, "Laki-Laki", "Apa", "923499242", Global.generateId("RS")));
+        Global.daftarResepsionis.add(new Resepsionis("Nadia Arifin", 34, "Perempuan", "Apa", "923481234", Global.generateId("RS")));
+        Global.daftarResepsionis.add(new Resepsionis("Andi Pratama", 45, "Laki-Laki", "Apa", "923492345", Global.generateId("RS")));
+        Global.daftarResepsionis.add(new Resepsionis("Siti Nurhaliza", 28, "Perempuan", "Apa", "923493456", Global.generateId("RS")));
+        Global.daftarResepsionis.add(new Resepsionis("Dimas Wijaya", 31, "Laki-Laki", "Apa", "923494567", Global.generateId("RS")));
+        Global.daftarResepsionis.add(new Resepsionis("Indah Putri", 26, "Perempuan", "Apa", "923495678", Global.generateId("RS")));
+        Global.daftarResepsionis.add(new Resepsionis("Budi Santoso", 50, "Laki-Laki", "Apa", "923496789", Global.generateId("RS")));
+        Global.daftarResepsionis.add(new Resepsionis("Fitriani Puspita", 22, "Perempuan", "Apa", "923497890", Global.generateId("RS")));
+        Global.daftarResepsionis.add(new Resepsionis("Agus Saputra", 40, "Laki-Laki", "Apa", "923498901", Global.generateId("RS")));
+        Global.daftarResepsionis.add(new Resepsionis("Nurul Hidayah", 29, "Perempuan", "Apa", "923499012", Global.generateId("RS")));
+
+
+        
+        Global.daftarRuangan.add(new Ruangan(1, "1 Kasur", true));
+        Global.daftarRuangan.add(new Ruangan(2, "2 Kasur", false));
+        Global.daftarRuangan.add(new Ruangan(3, "3 Kasur", true));
+        Global.daftarRuangan.add(new Ruangan(4, "1 Kasur", false));
+        Global.daftarRuangan.add(new Ruangan(5, "2 Kasur", true));
+        Global.daftarRuangan.add(new Ruangan(6, "3 Kasur", false));
+        Global.daftarRuangan.add(new Ruangan(7, "1 Kasur", true));
+        Global.daftarRuangan.add(new Ruangan(8, "2 Kasur", false));
+        Global.daftarRuangan.add(new Ruangan(9, "3 Kasur", true));
+        Global.daftarRuangan.add(new Ruangan(10, "1 Kasur", true));
+        Global.daftarRuangan.add(new Ruangan(11, "2 Kasur", false));
+        Global.daftarRuangan.add(new Ruangan(12, "3 Kasur", true));
+                    
     }
 }

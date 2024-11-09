@@ -19,6 +19,7 @@ public class Perawat extends Orang {
 
     @Override
     public void getDetail() {
+        System.out.println("ID: " + getId());
         System.out.println("Nama: " + getNama());
         System.out.println("Umur: " + getUmur());
         System.out.println("Jenis Kelamin: " + getJenisKelamin());
