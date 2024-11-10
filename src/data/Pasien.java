@@ -1,6 +1,6 @@
 package data;
 
-import data.Ruangan;
+import utils.Global;
 
 public class Pasien extends Orang {
     private String riwayatMedis;
@@ -55,4 +55,40 @@ public class Pasien extends Orang {
         }
         System.out.println("Sedang tidak dirawat di ruangan");
     }
+
+    public void displayPasien(){
+        int choice = 1;
+        while(choice != 0){
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Lihat Profile");
+            System.out.println("2. Lihat Jadwal Janji Temu");
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine();
+
+
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    getDetail();
+                    break;
+                case 2:
+                    for(JanjiTemu jt : Global.daftarJanjiTemu){
+                        if(jt.getPasien().getId().equals(getId())){
+                            jt.getDetail();
+                        }
+                    }
+                    break;
+                
+            
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
+            }
+        }
+    }
+
+
 }

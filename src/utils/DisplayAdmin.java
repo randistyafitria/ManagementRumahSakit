@@ -1,6 +1,4 @@
-package utils.display;
-
-import utils.Global;
+package utils;
 
 public class DisplayAdmin {
 
