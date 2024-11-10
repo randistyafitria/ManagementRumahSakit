@@ -1,14 +1,9 @@
+import utils.DisplayAdmin;
 import utils.Global;
 
 import utils.auth.AuthDokter;
 import utils.auth.AuthPasien;
 import utils.auth.AuthResepsionis;
-
-import utils.display.DisplayAdmin;
-import utils.display.DisplayDokter;
-import utils.display.DisplayPasien;
-import utils.display.DisplayResepsionis;
-
 import test.Init;
 
 import data.Pasien;
@@ -49,7 +44,7 @@ public class Main {
                         System.out.println("Data Pasien tidak ditemukan");
                         break;
                     }
-                    DisplayPasien.displayPasien(p);
+                    p.displayPasien();
                     break;
 
                 case 2:
@@ -58,7 +53,7 @@ public class Main {
                         System.out.println("Data Dokter tidak ditemukan");
                         break;
                     }
-                    DisplayDokter.displayDokter(d);                    
+                    d.displayDokter();                
                     break;
 
                 case 3:
@@ -67,7 +62,7 @@ public class Main {
                         System.out.println("Data Resepsionis tidak ditemukan");
                         break;
                     }
-                    DisplayResepsionis.displayResepsionis(r);                    
+                    r.displayResepsionis();                    
                     break;
 
                 case 4:

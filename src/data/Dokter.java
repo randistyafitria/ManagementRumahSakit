@@ -1,5 +1,9 @@
 package data;
 
+import java.util.ArrayList;
+
+import utils.Global;
+
 public class Dokter extends Orang {
     private String spesialisasi;
     private int tahunPengalaman;
@@ -17,7 +21,6 @@ public class Dokter extends Orang {
     public int getTahunPengalaman() {
         return tahunPengalaman;
     }
-
 
     public void setSpesialisasi(String spesialisasi) {
         this.spesialisasi = spesialisasi;
@@ -44,7 +47,52 @@ public class Dokter extends Orang {
         System.out.println("Dokter " + getNama() + " sedang mendiagnosis pasien " + pasien.getNama());
     }
 
-    public void tulisResep(Pasien pasien) {
-        System.out.println("Dokter " + getNama() + " menulis resep untuk pasien " + pasien.getNama());
+    public void displayDokter(){
+        int choice = 1;
+        while(choice != 0){
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Lihat Profile");
+            System.out.println("2. Lihat Jadwal Janji Temu");
+            System.out.println("3. Lihat Keadaan Pasien"); // TODO: make this to kelola pasien -> can change pasien details, and perhaps also buat jadwal janji temu
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine();
+
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    getDetail();
+                    break;
+                case 2:
+                    for(JanjiTemu jt : Global.daftarJanjiTemu){
+                        if(jt.getDokter().getId().equals(getId())){
+                            jt.getDetail();
+                        }
+                    }
+                    break;
+                case 3: 
+                    displayPasienDokter();
+                    break;
+            
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
+            }
+        }
+    }
+
+    public void displayPasienDokter(){
+        if(Global.dokterListPasien.containsKey(getId())){
+            ArrayList<Pasien> pasienList = Global.dokterListPasien.get(getId());
+            for(Pasien p : pasienList){
+                p.getDetail();
+            }
+        }
+        else{
+            System.out.println("Tidak ada pasien yang di assign ke anda");
+        }
+
     }
 }
