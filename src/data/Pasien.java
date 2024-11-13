@@ -75,8 +75,8 @@ public class Pasien extends Orang {
                     getDetail();
                     break;
                 case 2:
-                    //TODO: pindahkan ke lihatDaftarJanjiTemu()
-                    for(JanjiTemu jt : Global.daftarJanjiTemu){
+                    //TODO: pindahkan ke listJanjiTemuAktif()
+                    for(JanjiTemu jt : Global.janjiTemuPending){
                         if(jt.getPasien().getId().equals(getId())){
                             jt.getDetail();
                         }
@@ -92,13 +92,17 @@ public class Pasien extends Orang {
     }
 
 
-    public void lihatDaftarJanjiTemu(){
+    public void listJanjiTemuAktif(){
 
     }
 
     
     //TODO: buat switch case, tanyai user mau edit apa, sesuain sama atribut
     public void editPasien(){
+
+    }
+
+    public void editKeadaanPasien(){
 
     }
 

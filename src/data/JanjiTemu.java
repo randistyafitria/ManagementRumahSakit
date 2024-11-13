@@ -2,6 +2,7 @@ package data;
 
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import utils.Global;
 
 public class JanjiTemu {
     private String idJanjiTemu;
@@ -52,5 +53,28 @@ public class JanjiTemu {
     //TODO: mungkin bisa dieksekusi dokter sama resepsionis? sama mungkin admin.
     public void jadwalUlangJanjiTemu(){
 
+    }
+
+
+    //TODO: Overloaded function, satu buat pasien, satu buat dokter, gunakan param sebagai pembeda, bakal buat true / false atribut yang sesuai
+    public void setujuiJanjiTemu(Pasien p){
+
+    }
+
+    public void tolakJanjiTemu(Pasien p){
+
+    }
+
+
+    public void setujuiJanjiTemu(Dokter d){
+
+    }
+
+    public void tolakJanjiTemu(Dokter d){
+
+    }
+
+    public void checkPersetujuan(){
+        Global.janjiTemuAktif.add(this);
     }
 }

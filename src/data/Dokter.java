@@ -53,8 +53,9 @@ public class Dokter extends Orang {
             System.out.println("====================================");
             System.out.println("0. Keluar");
             System.out.println("1. Lihat Profile");
-            System.out.println("2. Lihat Jadwal Janji Temu");
-            System.out.println("3. Lihat Keadaan Pasien"); // TODO: make this to kelola pasien -> can change pasien details, and perhaps also buat jadwal janji temu
+            System.out.println("2. Lihat Jadwal Janji Temu Aktif");
+            System.out.println("3. Konfirmasi Janji Temu"); 
+            System.out.println("4. Lihat Keadaan Pasien"); // TODO: make this to kelola pasien -> can change pasien details, and perhaps also buat jadwal janji temu
             System.out.println("====================================");
             choice = Global.scanner.nextInt();
             Global.scanner.nextLine();
@@ -66,14 +67,15 @@ public class Dokter extends Orang {
                     getDetail();
                     break;
                 case 2:
-                    for(JanjiTemu jt : Global.daftarJanjiTemu){
+                    //TODO:pindah ke listJanjiTemuAktif
+                    for(JanjiTemu jt : Global.janjiTemuPending){
                         if(jt.getDokter().getId().equals(getId())){
                             jt.getDetail();
                         }
                     }
                     break;
                 case 3: 
-                    displayPasienDokter();
+                    listPasienDirawat();
                     break;
             
                 default:
@@ -83,7 +85,7 @@ public class Dokter extends Orang {
         }
     }
 
-    public void displayPasienDokter(){
+    public void listPasienDirawat(){
         if(Global.dokterListPasien.containsKey(getId())){
             ArrayList<Pasien> pasienList = Global.dokterListPasien.get(getId());
             for(Pasien p : pasienList){
@@ -102,7 +104,8 @@ public class Dokter extends Orang {
 
     }
 
-    public void editKeadaanPasien(){
-
+    public void listJanjiTemuAktif(){
+        
     }
+
 }
