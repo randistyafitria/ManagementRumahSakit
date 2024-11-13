@@ -41,13 +41,10 @@ public class Ruangan {
             System.out.println("Ruangan nomor " + nomorRuangan + " tidak tersedia");
         }
     }
-
-
     
     public void kosongkanRuangan() {
         isTersedia = true;
         System.out.println("Ruangan nomor " + nomorRuangan + " sekarang kosong");
         this.pasien = null;
-
     }
 }

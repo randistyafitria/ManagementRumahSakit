@@ -28,4 +28,9 @@ public class Perawat extends Orang {
         System.out.println("Spesialisasi: " + spesialisasi);
     }
 
+    //TODO: sama kyk dokter
+    public void listPasienDirawat(){
+
+    }
+
 }

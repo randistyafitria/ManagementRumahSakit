@@ -16,7 +16,9 @@ public class Global {
     public static ArrayList<Resepsionis> daftarResepsionis = new ArrayList<>();
     public static ArrayList<Ruangan> daftarRuangan = new ArrayList<>();
 
-    public static ArrayList<JanjiTemu> daftarJanjiTemu = new ArrayList<>();
+    public static ArrayList<JanjiTemu> janjiTemuPending = new ArrayList<>();
+    public static ArrayList<JanjiTemu> janjiTemuAktif = new ArrayList<>();
+
 
     public static HashMap<String, ArrayList<Pasien>> dokterListPasien = new HashMap<>();
     public static HashMap<String, ArrayList<Pasien>> perawatListPasien = new HashMap<>();
@@ -269,7 +271,7 @@ public class Global {
             ruangan.tetapkanUntukPasien(pasien);
 
 
-            daftarJanjiTemu.add(janjiTemu);
+            janjiTemuPending.add(janjiTemu);
     
             System.out.println("Janji temu berhasil dijadwalkan antara " + pasien.getNama() + " dan " + dokter.getNama() + ".");
         } 
