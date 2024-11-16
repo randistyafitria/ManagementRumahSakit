@@ -153,14 +153,20 @@ public class Pasien extends Orang {
         }
     }
 
-    
+
     //TODO: buat switch case, tanyai user mau edit apa, sesuain sama atribut
     public void editPasien(){
 
     }
 
-    public void editKeadaanPasien(){
 
+    //TODO: Error handling
+    public void editKeadaanPasien(){
+        System.out.println("Keadaan Pasien saat ini: " + kondisiSaatIni);
+        System.out.print("Silahkan input kondisi pasien yang terbaru: ");
+        String kondisiBaru = Global.scanner.nextLine();
+
+        setKondisiSaatIni(kondisiBaru);
     }
 
 

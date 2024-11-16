@@ -63,8 +63,6 @@ public abstract class Orang {
     }
 
 
-    
-
     public void getDetail() {
         System.out.println("ID: " + id);
         System.out.println("Nama: " + nama);

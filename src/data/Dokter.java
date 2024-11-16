@@ -55,7 +55,7 @@ public class Dokter extends Orang {
             System.out.println("1. Lihat Profile");
             System.out.println("2. Lihat Jadwal Janji Temu Aktif");
             System.out.println("3. Lihat Jadwal Janji Temu Pending");
-            System.out.println("4. Lihat Keadaan Pasien"); // TODO: make this to kelola pasien -> can change pasien details, and perhaps also buat jadwal janji temu
+            System.out.println("4. Kelola Pasien");
             System.out.println("====================================");
             choice = Global.scanner.nextInt();
             Global.scanner.nextLine();
@@ -139,8 +139,50 @@ public class Dokter extends Orang {
     public void listPasienDirawat(){
         if(Global.dokterListPasien.containsKey(getId())){
             ArrayList<Pasien> pasienList = Global.dokterListPasien.get(getId());
-            for(Pasien p : pasienList){
+            int choice  = 1;
+            int index = 0;
+    
+            if(pasienList.isEmpty()){
+                System.out.println("Tidak ada pasien yang di assign ke anda");
+                return;
+            }
+    
+            while(choice != 0){
+                System.out.println("====================================");
+                Pasien p = pasienList.get(index);
                 p.getDetail();
+                System.out.println("====================================");
+    
+                System.out.println("====================================");
+                System.out.println("0. Keluar");
+                System.out.println("1. Selanjutnya");
+                System.out.println("2. Sebelumnya");
+                System.out.println("3. Edit Keadaan Pasien"); 
+                //4 Jadwalkan Janji temu dengan pasien????? idk
+                System.out.println("====================================");
+                choice = Global.scanner.nextInt();
+                Global.scanner.nextLine(); 
+    
+    
+                switch (choice) {
+                    case 0:
+                        break;
+                    case 1:
+                        if(index < pasienList.size() - 1){
+                            index++;
+                        }                    
+                        break;
+                    case 2:
+                        if(index > 0){
+                            index--;
+                        }
+                        break;
+                    case 3:
+                        p.editKeadaanPasien();
+                    default:
+                        System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                        break;
+                }
             }
         }
         else{
@@ -156,9 +198,51 @@ public class Dokter extends Orang {
     }
 
     public void listJanjiTemuAktif(){
-        for(JanjiTemu jt : Global.janjiTemuPending){
-            if(jt.getDokter().getId().equals(getId())){
-                jt.getDetail();
+        int choice = 1;
+        int index = 0;
+
+        while(choice != 0){
+
+            if(Global.janjiTemuAktif.isEmpty()){
+                System.out.println("Anda tidak mempunyai janji temu yang sedang aktif");
+                return;
+            }
+            System.out.println("====================================");
+            JanjiTemu currJt = Global.janjiTemuAktif.get(index);
+            currJt.getDetail();
+            System.out.println(currJt.getStatusPersetujuan());
+            System.out.println("====================================");
+
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Selanjutnya");
+            System.out.println("2. Sebelumnya");
+            System.out.println("3. Batalkan Janji Temu");
+            System.out.println("4. Reschedule Janji Temu"); // nanti aja, terakhiran kalaau ga malas
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine(); 
+
+
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    if(index < Global.janjiTemuAktif.size() - 1){
+                        index++;
+                    }                    
+                    break;
+                case 2:
+                    if(index > 0){
+                        index--;
+                    }
+                    break;
+                case 3: 
+                    currJt.batalkanJanjiTemu();
+                    break;
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
             }
         }
     }
