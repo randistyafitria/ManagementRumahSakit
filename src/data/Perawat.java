@@ -30,7 +30,7 @@ public class Perawat extends Orang {
 
     //TODO: sama kyk dokter
     public void listPasienDirawat(){
-
+        
     }
 
 }
