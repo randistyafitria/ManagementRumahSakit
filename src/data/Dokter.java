@@ -83,6 +83,9 @@ public class Dokter extends Orang {
         }
     }
 
+
+    //need fix
+    //harusnya hanya tampilkan yang sesuai dengan identifiernya, yang hanya janji temu milik dokter ini
     public void listJanjiTemuPending(){
         int choice = 1;
         int index = 0;
@@ -191,12 +194,6 @@ public class Dokter extends Orang {
 
     }
 
-
-    //TODO: buat switch case, tanyai user mau edit apa, sesuain sama atribut
-    public void editDokter(){
-
-    }
-
     public void listJanjiTemuAktif(){
         int choice = 1;
         int index = 0;
@@ -245,6 +242,11 @@ public class Dokter extends Orang {
                     break;
             }
         }
+    }
+
+    //TODO: buat switch case, tanyai user mau edit apa, sesuain sama atribut
+    public void editDokter(){
+
     }
 
 }

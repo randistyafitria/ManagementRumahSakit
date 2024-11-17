@@ -3,6 +3,8 @@ package utils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Random;
@@ -10,14 +12,14 @@ import java.util.Random;
 import data.*;
 
 public class Global {
-    public static ArrayList<Dokter> daftarDokter = new ArrayList<>();
-    public static ArrayList<Pasien> daftarPasien = new ArrayList<>();
-    public static ArrayList<Perawat> daftarPerawat = new ArrayList<>();
-    public static ArrayList<Resepsionis> daftarResepsionis = new ArrayList<>();
-    public static ArrayList<Ruangan> daftarRuangan = new ArrayList<>();
+    public static List<Dokter> daftarDokter = new ArrayList<>();
+    public static List<Pasien> daftarPasien = new ArrayList<>();
+    public static List<Perawat> daftarPerawat = new ArrayList<>();
+    public static List<Resepsionis> daftarResepsionis = new ArrayList<>();
+    public static List<Ruangan> daftarRuangan = new ArrayList<>();
 
-    public static ArrayList<JanjiTemu> janjiTemuPending = new ArrayList<>();
-    public static ArrayList<JanjiTemu> janjiTemuAktif = new ArrayList<>();
+    public static List<JanjiTemu> janjiTemuPending = new ArrayList<>();
+    public static List<JanjiTemu> janjiTemuAktif = new ArrayList<>();
 
 
     public static HashMap<String, ArrayList<Pasien>> dokterListPasien = new HashMap<>();
@@ -296,15 +298,52 @@ public class Global {
     }
 
     public static void assignPerawat(Perawat pr, Pasien p){
-        if(dokterListPasien.containsKey(pr.getId())){
-            dokterListPasien.get(pr.getId()).add(p);
+        if(perawatListPasien.containsKey(pr.getId())){
+            perawatListPasien.get(pr.getId()).add(p);
             System.out.println("Pasien Berhasil ditambahkan!");
             return;
         }
-        dokterListPasien.put(pr.getId(), new ArrayList<>());
-        dokterListPasien.get(pr.getId()).add(p);
+        perawatListPasien.put(pr.getId(), new ArrayList<>());
+        perawatListPasien.get(pr.getId()).add(p);
 
         System.out.println("Pasien Berhasil di tambahkan");
+    }
+
+
+    //will be used soon? i think idk
+    public static Dokter randomDokter(){
+        if (Global.daftarDokter.isEmpty()) return null;
+        Random rand = new Random();
+        return Global.daftarDokter.get(rand.nextInt(Global.daftarDokter.size()));
+    }
+
+    public static Pasien randomPasien(){
+        if (Global.daftarPasien.isEmpty()) return null;
+        Random rand = new Random();
+        return Global.daftarPasien.get(rand.nextInt(Global.daftarPasien.size()));
+    }
+
+    public static Perawat randomPerawat(){
+        if (Global.daftarPerawat.isEmpty()) return null;
+        Random rand = new Random();
+        return Global.daftarPerawat.get(rand.nextInt(Global.daftarPerawat.size()));
+    }
+
+    public static Ruangan temukanRuanganKosong(){
+        for (Ruangan ruangan : Global.daftarRuangan) {
+            if (ruangan.getIsTersedia()) {
+                return ruangan;
+            }
+        }
+        return null; 
+    }
+
+    public static Date getRandomFutureDate(){
+        Calendar calendar = Calendar.getInstance();
+        Random rand = new Random();
+        int daysToAdd = rand.nextInt(30) + 1;
+        calendar.add(Calendar.DAY_OF_MONTH, daysToAdd);
+        return calendar.getTime();
     }
 
 }

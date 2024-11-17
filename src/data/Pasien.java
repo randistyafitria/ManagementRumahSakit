@@ -100,7 +100,10 @@ public class Pasien extends Orang {
         }
     }
 
+
+    //need fix, same with the dokter one, 
     public void listJanjiTemuPending(){
+
         int choice = 1;
         int index = 0;
 
