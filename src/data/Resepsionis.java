@@ -1,5 +1,7 @@
 package data;
 
+import java.util.InputMismatchException;
+
 import utils.Global;
 
 public class Resepsionis extends Orang {
@@ -47,35 +49,40 @@ public class Resepsionis extends Orang {
     }
 
     public void displayJadwalkanJanjiTemu(){
-        System.out.println("Masukkan Id / Nama Dokter");
-        String identifier = Global.scanner.nextLine();
-
-        Dokter dokter = Global.searchDokter(identifier);
-
-        if(dokter == null){
-            System.out.println("Data Dokter tidak ditemukan, Mohon ulangi operasi lagi");
-            return;
-        }
-
-        System.out.println("Masukkan Id / Nama Pasien");
-        identifier = Global.scanner.nextLine();
-        Pasien pasien = Global.searchPasien(identifier);
-
-
-        if(pasien == null){
-            System.out.println("Data Pasien tidak ditemukan, Mohon ulangi operasi lagi");
-            return;
-        }
-
-        for(Ruangan ru : Global.daftarRuangan){
-            if(ru.getIsTersedia().equals(true)){
-                Global.jadwalkanJanjiTemu(dokter, pasien, ru, this);
+        try{
+            System.out.println("Masukkan Id / Nama Dokter");
+            String identifier = Global.scanner.nextLine();
+    
+            Dokter dokter = Global.searchDokter(identifier);
+    
+            if(dokter == null){
+                System.out.println("Data Dokter tidak ditemukan, Mohon ulangi operasi lagi");
                 return;
             }
+    
+            System.out.println("Masukkan Id / Nama Pasien");
+            identifier = Global.scanner.nextLine();
+            Pasien pasien = Global.searchPasien(identifier);
+    
+    
+            if(pasien == null){
+                System.out.println("Data Pasien tidak ditemukan, Mohon ulangi operasi lagi");
+                return;
+            }
+    
+            Ruangan ru = Global.temukanRuanganKosong();
+    
+            if(ru == null){
+                System.out.println("Tidak ada ruangan yang tersedia, Janji Temu tidak bisa dijadwalkan");
+                return;
+            }
+            Global.jadwalkanJanjiTemu(dokter, pasien, ru, this);
         }
+        catch(InputMismatchException e){
+            System.out.println("Input tidak valid.");
+            Global.scanner.nextLine();
 
-        System.out.println("Tidak ada ruangan yang tersedia, Janji Temu tidak bisa dijadwalkan");
-
+        }
     }
 
     public void displayAssignPasien(){
