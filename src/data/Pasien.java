@@ -157,9 +157,78 @@ public class Pasien extends Orang {
     }
 
 
-    //TODO: buat switch case, tanyai user mau edit apa, sesuain sama atribut
     public void editPasien(){
+        int choice = 1;
+        while (choice != 0){
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Edit Nama");
+            System.out.println("2. Edit Umur");
+            System.out.println("3. Edit Jenis Kelamin");
+            System.out.println("4. Edit Alamat");
+            System.out.println("5. Edit Nomor Kontak");
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine();
+            
+            String inputBaru = "";
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    System.out.print("Masukan Nama Baru: ");
+                    inputBaru = Global.scanner.nextLine();
+                    setNama(inputBaru);
+                    System.out.println("Nama berhasil diubah menjadi " + getNama());
+                    break;
+                case 2:
+                    System.out.print("Masukan Umur Baru: ");
+                    inputBaru = Global.scanner.nextLine();
+                    try{
+                        int umurBaru = Integer.parseInt(inputBaru);
+                        setUmur(umurBaru);
+                        System.out.print("Umur berhasil diubah menjadi " + getUmur());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Input umur tidak valid. Pastikan memasukkan angka.");
+                    }
+                    break;
+                case 3:
+                    while (true) {
+                        System.out.print("Masukkan jenis kelamin baru (Laki Laki/Perempuan): ");
+                        inputBaru = Global.scanner.nextLine();
+                        if (inputBaru.equalsIgnoreCase("Laki Laki") || inputBaru.equalsIgnoreCase("Perempuan")) {
+                            setJenisKelamin(inputBaru);
+                            System.out.print("Jenis kelamin berhasil diubah menjadi " + getJenisKelamin());
+                            break;
+                        } else {
+                            System.out.println("Input tidak valid. Silakan masukkan 'Laki Laki' atau 'Perempuan'.");
+                        }
+                    }
+                    break;
+                case 4:
+                    System.out.print("Masukan alamat baru: ");
+                    inputBaru = Global.scanner.nextLine();
+                    setAlamat(inputBaru);
+                    System.out.println("Nama berhasil diubah menjadi " + getAlamat());
+                    break;
+                case 5:
+                    System.out.print("Masukan nomor kontak baru: ");
+                    inputBaru = Global.scanner.nextLine();
+                    setNomorKontak(inputBaru);
+                    System.out.println("Nama berhasil diubah menjadi " + getNomorKontak());
+                    break;
+                case 6:
+                    System.out.print("Masukan riwayat medis Baru: ");
+                    inputBaru = Global.scanner.nextLine();
+                    setRiwayatMedis(inputBaru);
+                    System.out.println("Riwayat medis berhasil diubah menjadi " + riwayatMedis);
+                    break;
 
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
+            }
+        }
     }
 
 

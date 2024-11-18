@@ -1,6 +1,7 @@
 package data;
 
 import data.Pasien;
+import utils.Global;
 
 public class Ruangan {
     private int nomorRuangan;
@@ -47,4 +48,13 @@ public class Ruangan {
         System.out.println("Ruangan nomor " + nomorRuangan + " sekarang kosong");
         this.pasien = null;
     }
+
+    public void getDetail() {
+
+        System.out.println("Nomor Ruangan: " + nomorRuangan);
+        System.out.println("Tipe Ruangan: " + tipeRuangan);
+        System.out.println("Status Ruangan: " + (isTersedia == true ? "Tersedia" : "Terisi"));
+        System.out.println("Pasien: " + (pasien != null ? pasien.getNama() : "Tidak ada pasien"));
+    }
+
 }
