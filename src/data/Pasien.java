@@ -62,7 +62,8 @@ public class Pasien extends Orang {
             System.out.println("====================================");
             System.out.println("0. Keluar");
             System.out.println("1. Lihat Profile");
-            System.out.println("2. Lihat Jadwal Janji Temu");
+            System.out.println("2. Lihat Jadwal Janji Temu Aktif");
+            System.out.println("3. Lihat Jadwal Janji Temu Pending");
             System.out.println("====================================");
             choice = Global.scanner.nextInt();
             Global.scanner.nextLine();
@@ -75,14 +76,11 @@ public class Pasien extends Orang {
                     getDetail();
                     break;
                 case 2:
-                    //TODO: pindahkan ke listJanjiTemuAktif()
-                    for(JanjiTemu jt : Global.janjiTemuPending){
-                        if(jt.getPasien().getId().equals(getId())){
-                            jt.getDetail();
-                        }
-                    }
+                    listJanjiTemuAktif();
                     break;
-                
+                case 3: 
+                    listJanjiTemuPending();
+                    break;
             
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -92,18 +90,86 @@ public class Pasien extends Orang {
     }
 
 
-    public void listJanjiTemuAktif(){
 
+    //temp, add so it can go left, right
+    public void listJanjiTemuAktif(){
+        for(JanjiTemu jt : Global.janjiTemuAktif){
+            if(jt.getPasien().getId().equals(getId())){
+                jt.getDetail();
+            }
+        }
     }
 
-    
+
+    //need fix, same with the dokter one, 
+    public void listJanjiTemuPending(){
+
+        int choice = 1;
+        int index = 0;
+
+        while(choice != 0){
+
+            if(Global.janjiTemuPending.isEmpty()){
+                System.out.println("Tidak ada janji temu yang belum disetujui");
+                return;
+            }
+            System.out.println("====================================");
+            JanjiTemu currJt = Global.janjiTemuPending.get(index);
+            currJt.getDetail();
+            System.out.println(currJt.getStatusPersetujuan());
+            System.out.println("====================================");
+
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Selanjutnya");
+            System.out.println("2. Sebelumnya");
+            System.out.println("3. Setujui Janji Temu");
+            System.out.println("4. Tolak Janji Temu");
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine(); 
+
+
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    if(index < Global.janjiTemuPending.size() - 1){
+                        index++;
+                    }                    
+                    break;
+                case 2:
+                    if(index > 0){
+                        index--;
+                    }
+                    break;
+                case 3: 
+                    currJt.setujuiJanjiTemuPasien();
+                    break;
+                case 4: 
+                    currJt.tolakJanjiTemuPasien();
+                    break;
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
+            }
+        }
+    }
+
+
     //TODO: buat switch case, tanyai user mau edit apa, sesuain sama atribut
     public void editPasien(){
 
     }
 
-    public void editKeadaanPasien(){
 
+    //TODO: Error handling
+    public void editKeadaanPasien(){
+        System.out.println("Keadaan Pasien saat ini: " + kondisiSaatIni);
+        System.out.print("Silahkan input kondisi pasien yang terbaru: ");
+        String kondisiBaru = Global.scanner.nextLine();
+
+        setKondisiSaatIni(kondisiBaru);
     }
 
 
