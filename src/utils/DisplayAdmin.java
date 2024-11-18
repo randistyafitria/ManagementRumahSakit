@@ -232,6 +232,9 @@ public class DisplayAdmin {
                         index--;
                     }
                     break;
+                case 3:
+                    Global.daftarDokter.get(index).editDokter();
+                    break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
                     break;
@@ -240,20 +243,178 @@ public class DisplayAdmin {
     }
 
     public static void displayAdminDetailPasien(){
+        int choice  = 1;
+        int index = 0;
+
+        if(Global.daftarPasien.isEmpty()){
+            System.out.println("Belum ada pasien yang didaftarkan");
+            return;
+        }
+
+        while(choice != 0){
+            System.out.println("====================================");
+            Global.daftarPasien.get(index).getDetail();
+            System.out.println("====================================");
+
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Selanjutnya");
+            System.out.println("2. Sebelumnya");
+            System.out.println("3. Edit pasien");
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine();
+
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    if(index < Global.daftarPasien.size() - 1){
+                        index++;
+                    }                    
+                    break;
+                case 2:
+                    if(index > 0){
+                        index--;
+                    }
+                    break;
+                case 3:
+                    Global.daftarPasien.get(index).editPasien();
+                    break;
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
+            }
+        }
     }
 
 
     public static void displayAdminDetailResepsionis(){
+        int choice  = 1;
+        int index = 0;
 
+        if(Global.daftarResepsionis.isEmpty()){
+            System.out.println("Belum ada resepsionis yang didaftarkan");
+            return;
+        }
+
+        while(choice != 0){
+            System.out.println("====================================");
+            Global.daftarResepsionis.get(index).getDetail();
+            System.out.println("====================================");
+
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Selanjutnya");
+            System.out.println("2. Sebelumnya");
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine();
+
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    if(index < Global.daftarResepsionis.size() - 1){
+                        index++;
+                    }                    
+                    break;
+                case 2:
+                    if(index > 0){
+                        index--;
+                    }
+                    break;
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
+            }
+        }
     }
 
     //TODO ?: Mungkin buat disini bisa juga tambahin assign perawat ke pasien? 
     public static void displayAdminDetailPerawat(){
+        int choice  = 1;
+        int index = 0;
+
+        if(Global.daftarPerawat.isEmpty()){
+            System.out.println("Belum ada perawat yang didaftarkan");
+            return;
+        }
+
+        while(choice != 0){
+            System.out.println("====================================");
+            Global.daftarPerawat.get(index).getDetail();
+            System.out.println("====================================");
+
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Selanjutnya");
+            System.out.println("2. Sebelumnya");
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine();
+
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    if(index < Global.daftarPerawat.size() - 1){
+                        index++;
+                    }                    
+                    break;
+                case 2:
+                    if(index > 0){
+                        index--;
+                    }
+                    break;
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
+            }
+        }
     }
 
     //TODO ?: Mungkin buat disini bisa juga tambahin assign ruangan ke pasien? 
     public static void displayAdminDetailRuangan(){
+        int choice  = 1;
+        int index = 0;
 
+        if(Global.daftarRuangan.isEmpty()){
+            System.out.println("Belum ada pasien yang didaftarkan");
+            return;
+        }
+
+        while(choice != 0){
+            System.out.println("====================================");
+            Global.daftarRuangan.get(index).getDetail();
+            System.out.println("====================================");
+
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Selanjutnya");
+            System.out.println("2. Sebelumnya");
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine();
+
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    if(index < Global.daftarRuangan.size() - 1){
+                        index++;
+                    }                    
+                    break;
+                case 2:
+                    if(index > 0){
+                        index--;
+                    }
+                    break;
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
+            }
+        }
     }
 
 }

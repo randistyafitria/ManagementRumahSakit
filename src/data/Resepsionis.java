@@ -112,7 +112,6 @@ public class Resepsionis extends Orang {
         Global.assignDokter(dokter, pasien);
     }
 
-    //TODO: kayak diatas, tapi buat perawat.
     public void displayAssignPerawat(){
         System.out.println("Masukkan Id / Nama Perawat");
         String identifier = Global.scanner.nextLine();
