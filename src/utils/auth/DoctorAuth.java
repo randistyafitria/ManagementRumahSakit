@@ -1,15 +1,14 @@
 package utils.auth;
 
+import data.Doctor;
 import utils.Global;
-import data.Pasien;
 
-public class AuthPasien {
-
-    public static Pasien auth(){
+public class DoctorAuth {
+    public static Doctor auth(){
         System.out.println("Masukkan ID / Nama anda yang sudah terdaftar");
         String identifier = Global.scanner.nextLine();
 
-        return Global.searchPasien(identifier);
+        return Global.searchDoctor(identifier);
         
     }
 }

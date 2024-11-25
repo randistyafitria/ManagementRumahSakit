@@ -5,50 +5,47 @@ import java.util.List;
 
 import utils.Global;
 
-public class Dokter extends Orang {
-    private String spesialisasi;
-    private int tahunPengalaman;
+public class Doctor extends Person {
+    private String specialization;
+    private int yearsOfExperience;
 
-    public Dokter(String nama, int umur, String jenisKelamin, String alamat, String nomorKontak, String idDokter, String spesialisasi, int tahunPengalaman) {
-        super(nama, umur, jenisKelamin, alamat, nomorKontak, idDokter);
-        this.spesialisasi = spesialisasi;
-        this.tahunPengalaman = tahunPengalaman;
+    public Doctor(String name, int age, String gender, String address, String contact, String id, String specialization, int yearsOfExperience) {
+        super(name, age, gender, address, contact, id);
+        this.specialization = specialization;
+        this.yearsOfExperience = yearsOfExperience;
     }
 
-    public String getSpesialisasi() {
-        return spesialisasi;
+    public String getSpecialization() {
+        return specialization;
     }
 
-    public int getTahunPengalaman() {
-        return tahunPengalaman;
+    public int getYearsOfExperience() {
+        return yearsOfExperience;
     }
 
-    public void setSpesialisasi(String spesialisasi) {
-        this.spesialisasi = spesialisasi;
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
     }
 
-    public void setTahunPengalaman(int tahunPengalaman) {
-        this.tahunPengalaman = tahunPengalaman;
+    public void setYearsOfExperience(int yearsOfExperience) {
+        this.yearsOfExperience = yearsOfExperience;
     }
 
     @Override
     public void getDetail() {
         System.out.println("ID: " + getId());
-        System.out.println("Nama: " + getNama());
-        System.out.println("Umur: " + getUmur());
-        System.out.println("Jenis Kelamin: " + getJenisKelamin());
-        System.out.println("Alamat: " + getAlamat());
-        System.out.println("Nomor Kontak: " + getNomorKontak());
-        System.out.println("Spesialisasi: " + spesialisasi);
-        System.out.println("Tahun Pengalaman: " + tahunPengalaman + " Tahun");
+        System.out.println("Nama: " + getName());
+        System.out.println("Umur: " + getAge());
+        System.out.println("Jenis Kelamin: " + getGender());
+        System.out.println("Alamat: " + getAddress());
+        System.out.println("Nomor Kontak: " + getContact());
+        System.out.println("Spesialisasi: " + specialization);
+        System.out.println("Tahun Pengalaman: " + yearsOfExperience + " Tahun");
     }
 
 
-    public void diagnosisPasien(Pasien pasien) {
-        System.out.println("Dokter " + getNama() + " sedang mendiagnosis pasien " + pasien.getNama());
-    }
 
-    public void displayDokter(){
+    public void doctorDisplay(){
         int choice = 1;
         while(choice != 0){
             System.out.println("====================================");
@@ -68,13 +65,13 @@ public class Dokter extends Orang {
                     getDetail();
                     break;
                 case 2:
-                    listJanjiTemuAktif();
+                    listActiveAppointment();
                     break;
                 case 3: 
-                    listJanjiTemuPending();
+                    listPendingAppointment();
                     break;
                 case 4: 
-                    listPasienDirawat();
+                    listTreatedPatients();
                     break;
             
                 default:
@@ -87,22 +84,22 @@ public class Dokter extends Orang {
 
     //need fix
     //harusnya hanya tampilkan yang sesuai dengan identifiernya, yang hanya janji temu milik dokter ini
-    public void listJanjiTemuPending(){
+    public void listPendingAppointment(){
         int choice = 1;
         int index = 0;
 
-        List<JanjiTemu> listJanjiTemuPending = Global.getFilteredJanjiTemuPending(getId());
+        List<Appointment> listPendingAppointment = Global.getFilteredPendingAppointments(getId());
 
-        if(listJanjiTemuPending.isEmpty()){
+        if(listPendingAppointment.isEmpty()){
             System.out.println("Tidak ada janji temu yang belum disetujui");
             return;
         }
 
         while(choice != 0){
             System.out.println("====================================");
-            JanjiTemu currJt = listJanjiTemuPending.get(index);
+            Appointment currJt = listPendingAppointment.get(index);
             currJt.getDetail();
-            System.out.println(currJt.getStatusPersetujuan());
+            System.out.println(currJt.getAgrementStatus());
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -120,7 +117,7 @@ public class Dokter extends Orang {
                 case 0:
                     break;
                 case 1:
-                    if(index < listJanjiTemuPending.size() - 1){
+                    if(index < listPendingAppointment.size() - 1){
                         index++;
                     }                    
                     break;
@@ -130,10 +127,10 @@ public class Dokter extends Orang {
                     }
                     break;
                 case 3: 
-                    currJt.setujuJanjiTemuDokter();
+                    currJt.doctorAcceptAppointment();
                     break;
                 case 4: 
-                    currJt.tolakJanjiTemuDokter();
+                    currJt.doctorRejectAppointment();
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -142,9 +139,9 @@ public class Dokter extends Orang {
         }    
     }
 
-    public void listPasienDirawat(){
-        if(Global.dokterListPasien.containsKey(getId())){
-            ArrayList<Pasien> pasienList = Global.dokterListPasien.get(getId());
+    public void listTreatedPatients(){
+        if(Global.doctorListPatient.containsKey(getId())){
+            ArrayList<Patient> pasienList = Global.doctorListPatient.get(getId());
             int choice  = 1;
             int index = 0;
     
@@ -155,7 +152,7 @@ public class Dokter extends Orang {
     
             while(choice != 0){
                 System.out.println("====================================");
-                Pasien p = pasienList.get(index);
+                Patient p = pasienList.get(index);
                 p.getDetail();
                 System.out.println("====================================");
     
@@ -184,7 +181,7 @@ public class Dokter extends Orang {
                         }
                         break;
                     case 3:
-                        p.editKeadaanPasien();
+                        p.editPatientCondition();
                     default:
                         System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
                         break;
@@ -197,24 +194,24 @@ public class Dokter extends Orang {
 
     }
 
-    public void listJanjiTemuAktif(){
+    public void listActiveAppointment(){
         int choice = 1;
         int index = 0;
 
 
-        List<JanjiTemu> listJanjiTemuAktif = Global.getFilteredJanjiTemuAktif(getId());
+        List<Appointment> listActiveAppointment = Global.getFilteredActiveAppointments(getId());
 
 
-        if(listJanjiTemuAktif.isEmpty()){
+        if(listActiveAppointment.isEmpty()){
             System.out.println("Anda tidak mempunyai janji temu yang sedang aktif");
             return;
         }
 
         while(choice != 0){
             System.out.println("====================================");
-            JanjiTemu currJt = listJanjiTemuAktif.get(index);
+            Appointment currJt = listActiveAppointment.get(index);
             currJt.getDetail();
-            System.out.println(currJt.getStatusPersetujuan());
+            System.out.println(currJt.getAgrementStatus());
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -232,7 +229,7 @@ public class Dokter extends Orang {
                 case 0:
                     break;
                 case 1:
-                    if(index < listJanjiTemuAktif.size() - 1){
+                    if(index < listActiveAppointment.size() - 1){
                         index++;
                     }                    
                     break;
@@ -242,7 +239,7 @@ public class Dokter extends Orang {
                     }
                     break;
                 case 3: 
-                    currJt.batalkanJanjiTemu();
+                    currJt.cancelAppointment();
                     return;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -251,7 +248,7 @@ public class Dokter extends Orang {
         }
     }
 
-    public void editDokter(){
+    public void editDoctor(){
         int choice = 1;
         while (choice != 0){
             System.out.println("====================================");
@@ -266,64 +263,71 @@ public class Dokter extends Orang {
             choice = Global.scanner.nextInt();
             Global.scanner.nextLine();
             
-            String inputBaru = "";
+            String newInput = "";
             switch (choice) {
                 case 0:
                     break;
+
                 case 1:
                     System.out.print("Masukan Nama Baru: ");
-                    inputBaru = Global.scanner.nextLine();
-                    setNama(inputBaru);
-                    System.out.println("Nama berhasil diubah menjadi " + getNama());
+                    newInput = Global.scanner.nextLine();
+                    setName(newInput);
+                    System.out.println("Nama berhasil diubah menjadi " + getName());
                     break;
+
                 case 2:
                     System.out.print("Masukan Umur Baru: ");
-                    inputBaru = Global.scanner.nextLine();
+                    newInput = Global.scanner.nextLine();
                     try{
-                        int umurBaru = Integer.parseInt(inputBaru);
-                        setUmur(umurBaru);
-                        System.out.println("Umur berhasil diubah menjadi " + getUmur());
+                        int newAge = Integer.parseInt(newInput);
+                        setAge(newAge);
+                        System.out.println("Umur berhasil diubah menjadi " + getAge());
                     } catch (NumberFormatException e) {
-                        System.out.println("Input umur tidak valid. Pastikan memasukkan angka.");
+                        System.out.println("Input age tidak valid. Pastikan memasukkan angka.");
                     }
                     break;
+
                 case 3:
                     while (true) {
                         System.out.print("Masukkan jenis kelamin baru (Laki Laki/Perempuan): ");
-                        inputBaru = Global.scanner.nextLine();
-                        if (inputBaru.equalsIgnoreCase("Laki Laki") || inputBaru.equalsIgnoreCase("Perempuan")) {
-                            setJenisKelamin(inputBaru);
-                            System.out.println("Jenis kelamin berhasil diubah menjadi " + getJenisKelamin());
+                        newInput = Global.scanner.nextLine();
+                        if (newInput.equalsIgnoreCase("Laki Laki") || newInput.equalsIgnoreCase("Perempuan")) {
+                            setGender(newInput);
+                            System.out.println("Jenis kelamin berhasil diubah menjadi " + getGender());
                             break;
                         } else {
                             System.out.println("Input tidak valid. Silakan masukkan 'Laki Laki' atau 'Perempuan'.");
                         }
                     }
                     break;
+
                 case 4:
                     System.out.print("Masukan alamat baru: ");
-                    inputBaru = Global.scanner.nextLine();
-                    setAlamat(inputBaru);
-                    System.out.println("Nama berhasil diubah menjadi " + getAlamat());
+                    newInput = Global.scanner.nextLine();
+                    setAddress(newInput);
+                    System.out.println("Nama berhasil diubah menjadi " + getAddress());
                     break;
+
                 case 5:
                     System.out.print("Masukan nomor kontak baru: ");
-                    inputBaru = Global.scanner.nextLine();
-                    setNomorKontak(inputBaru);
-                    System.out.println("Nomor Kontak berhasil diubah menjadi " + getNomorKontak());
+                    newInput = Global.scanner.nextLine();
+                    setContact(newInput);
+                    System.out.println("Nomor Kontak berhasil diubah menjadi " + getContact());
                     break;
+
                 case 6:
                     System.out.print("Masukan spesialisasi baru: ");
-                    inputBaru = Global.scanner.nextLine();
-                    setSpesialisasi(inputBaru);
-                    System.out.println("Spesialisasi berhasil diubah menjadi " + spesialisasi);
+                    newInput = Global.scanner.nextLine();
+                    setSpecialization(newInput);
+                    System.out.println("Spesialisasi berhasil diubah menjadi " + specialization);
+
                 case 7:
                     System.out.print("Masukan tahun pengalaman baru: ");
-                    inputBaru = Global.scanner.nextLine();
+                    newInput = Global.scanner.nextLine();
                     try{
-                        int pengalamanBaru = Integer.parseInt(inputBaru);
-                        setTahunPengalaman(pengalamanBaru);
-                        System.out.println("Tahun pengalaman berhasil diubah menjadi " + tahunPengalaman);
+                        int newYearsOfExperience = Integer.parseInt(newInput);
+                        setYearsOfExperience(newYearsOfExperience);
+                        System.out.println("Tahun pengalaman berhasil diubah menjadi " + yearsOfExperience);
                     } catch (NumberFormatException e) {
                         System.out.println("Input tahun pengalaman tidak valid. Pastikan memasukkan angka.");
                     }

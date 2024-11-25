@@ -1,17 +1,17 @@
 package utils.auth;
 
-import data.Resepsionis;
+import data.Receptionist;
 import utils.Global;
 
-public class AuthResepsionis {
-    public static Resepsionis auth(){
+public class ReceptionistAuth {
+    public static Receptionist auth(){
         System.out.println("Masukkan ID / Nama anda yang sudah terdaftar");
         String identifier = Global.scanner.nextLine();
 
         identifier = identifier.trim();
 
-        for(Resepsionis r : Global.daftarResepsionis){
-            if(r.getId().equals(identifier) || r.getNama().equals(identifier)){
+        for(Receptionist r : Global.receptionistList){
+            if(r.getId().equals(identifier) || r.getName().equals(identifier)){
                 return r;
             }
         }

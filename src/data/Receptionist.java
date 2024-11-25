@@ -2,14 +2,14 @@ package data;
 
 import utils.Global;
 
-public class Resepsionis extends Orang {
+public class Receptionist extends Person {
 
-    public Resepsionis(String nama, int umur, String jenisKelamin, String alamat, String nomorKontak, String idKaryawan) {
-        super(nama, umur, jenisKelamin, alamat, nomorKontak, idKaryawan);
+    public Receptionist(String name, int umur, String gender, String address, String contact, String receptionistId) {
+        super(name, umur, gender, address, contact, receptionistId);
     }
 
 
-    public void displayResepsionis(){
+    public void receptionistDisplay(){
         int choice = 1;
         while(choice != 0){
             System.out.println("====================================");
@@ -28,10 +28,10 @@ public class Resepsionis extends Orang {
                     getDetail();
                     break;
                 case 2:
-                    jadwalkanJanjiTemu();
+                    scheduleAppointment();
                     break;
                 case 3: 
-                    displayAssignPasien();
+                    assignDoctorToPatient();
                     break;
 
             
@@ -42,15 +42,15 @@ public class Resepsionis extends Orang {
         }
     }
 
-    public void jadwalkanJanjiTemu(){
-        Global.jadwalkanJanjiTemu();
+    public void scheduleAppointment(){
+        Global.scheduleAppointment();
     }
 
-    public void displayAssignPasien(){
+    public void assignDoctorToPatient(){
         System.out.println("Masukkan Id / Nama Dokter");
         String identifier = Global.scanner.nextLine();
 
-        Dokter dokter = Global.searchDokter(identifier);
+        Doctor dokter = Global.searchDoctor(identifier);
 
         if(dokter == null){
             System.out.println("Data Dokter tidak ditemukan, Mohon ulangi operasi lagi");
@@ -59,7 +59,7 @@ public class Resepsionis extends Orang {
 
         System.out.println("Masukkan Id / Nama Pasien");
         identifier = Global.scanner.nextLine();
-        Pasien pasien = Global.searchPasien(identifier);
+        Patient pasien = Global.searchPatient(identifier);
 
 
         if(pasien == null){
@@ -70,33 +70,33 @@ public class Resepsionis extends Orang {
         dokter.getDetail();
         pasien.getDetail();
 
-        Global.assignDokter(dokter, pasien);
+        Global.assignDoctor(dokter, pasien);
     }
 
-    public void displayAssignPerawat(){
+    public void assignNurseToPatient(){
         System.out.println("Masukkan Id / Nama Perawat");
         String identifier = Global.scanner.nextLine();
 
-        Perawat perawat = Global.searchPerawat(identifier);
+        Nurse nurse = Global.searchNurse(identifier);
 
-        if(perawat == null){
+        if(nurse == null){
             System.out.println("Data Perawat tidak ditemukan, Mohon ulangi operasi lagi");
             return;
         }
 
         System.out.println("Masukkan Id / Nama Pasien");
         identifier = Global.scanner.nextLine();
-        Pasien pasien = Global.searchPasien(identifier);
+        Patient patient = Global.searchPatient(identifier);
 
 
-        if(pasien == null){
+        if(patient == null){
             System.out.println("Data Pasien tidak ditemukan, Mohon ulangi operasi lagi");
             return;
         }
 
-        perawat.getDetail();
-        pasien.getDetail();
+        nurse.getDetail();
+        patient.getDetail();
 
-        Global.assignPerawat(perawat, pasien);
+        Global.assignNurse(nurse, patient);
     }
 }
