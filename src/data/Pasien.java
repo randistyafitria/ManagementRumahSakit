@@ -1,5 +1,7 @@
 package data;
 
+import java.util.List;
+
 import utils.Global;
 
 public class Pasien extends Orang {
@@ -93,9 +95,50 @@ public class Pasien extends Orang {
 
     //temp, add so it can go left, right
     public void listJanjiTemuAktif(){
-        for(JanjiTemu jt : Global.janjiTemuAktif){
-            if(jt.getPasien().getId().equals(getId())){
-                jt.getDetail();
+        int choice = 1;
+        int index = 0;
+
+        List<JanjiTemu> listJanjiTemuAktif = Global.getFilteredJanjiTemuAktif(getId());
+
+
+        if(listJanjiTemuAktif.isEmpty()){
+            System.out.println("Anda tidak mempunyai janji temu yang sedang aktif");
+            return;
+        }
+
+
+        while(choice != 0){
+            System.out.println("====================================");
+            JanjiTemu currJt = listJanjiTemuAktif.get(index);
+            currJt.getDetail();
+            System.out.println(currJt.getStatusPersetujuan());
+            System.out.println("====================================");
+
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Selanjutnya");
+            System.out.println("2. Sebelumnya");
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine(); 
+
+
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    if(index < listJanjiTemuAktif.size() - 1){
+                        index++;
+                    }                    
+                    break;
+                case 2:
+                    if(index > 0){
+                        index--;
+                    }
+                    break;
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
             }
         }
     }
@@ -107,14 +150,16 @@ public class Pasien extends Orang {
         int choice = 1;
         int index = 0;
 
-        while(choice != 0){
+        List<JanjiTemu> listJanjiTemuPending = Global.getFilteredJanjiTemuPending(getId());
 
-            if(Global.janjiTemuPending.isEmpty()){
-                System.out.println("Tidak ada janji temu yang belum disetujui");
-                return;
-            }
+        if(listJanjiTemuPending.isEmpty()){
+            System.out.println("Tidak ada janji temu yang belum disetujui");
+            return;
+        }
+
+        while(choice != 0){
             System.out.println("====================================");
-            JanjiTemu currJt = Global.janjiTemuPending.get(index);
+            JanjiTemu currJt = listJanjiTemuPending.get(index);
             currJt.getDetail();
             System.out.println(currJt.getStatusPersetujuan());
             System.out.println("====================================");
@@ -134,7 +179,7 @@ public class Pasien extends Orang {
                 case 0:
                     break;
                 case 1:
-                    if(index < Global.janjiTemuPending.size() - 1){
+                    if(index < listJanjiTemuPending.size() - 1){
                         index++;
                     }                    
                     break;

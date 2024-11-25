@@ -95,9 +95,8 @@ public class JanjiTemu {
         return "Status persetujuan tidak dapat ditentukan.";
     }
 
-    //TODO: terserah mau gimana, mungkin bisa hapus aja dari arrayList
     public void batalkanJanjiTemu(){
-        Global.janjiTemuPending.remove(this);
+        Global.janjiTemuAktif.remove(this);
     }
 
     //TODO: mungkin bisa dieksekusi dokter sama resepsionis? sama mungkin admin? apa gausah? malas 
