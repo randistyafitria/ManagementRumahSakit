@@ -1,5 +1,9 @@
 package data;
 
+import java.util.ArrayList;
+
+import utils.Global;
+
 public class Perawat extends Orang {
     private String spesialisasi;
 
@@ -28,9 +32,58 @@ public class Perawat extends Orang {
         System.out.println("Spesialisasi: " + spesialisasi);
     }
 
-    //TODO: sama kyk dokter
     public void listPasienDirawat(){
-        
+        if(Global.dokterListPasien.containsKey(getId())){
+            ArrayList<Pasien> pasienList = Global.perawatListPasien.get(getId());
+            int choice  = 1;
+            int index = 0;
+    
+            if(pasienList.isEmpty()){
+                System.out.println("Tidak ada pasien yang di assign ke anda");
+                return;
+            }
+    
+            while(choice != 0){
+                System.out.println("====================================");
+                Pasien p = pasienList.get(index);
+                p.getDetail();
+                System.out.println("====================================");
+    
+                System.out.println("====================================");
+                System.out.println("0. Keluar");
+                System.out.println("1. Selanjutnya");
+                System.out.println("2. Sebelumnya");
+                System.out.println("3. Edit Keadaan Pasien"); 
+                System.out.println("====================================");
+                choice = Global.scanner.nextInt();
+                Global.scanner.nextLine(); 
+    
+    
+                switch (choice) {
+                    case 0:
+                        break;
+                    case 1:
+                        if(index < pasienList.size() - 1){
+                            index++;
+                        }                    
+                        break;
+                    case 2:
+                        if(index > 0){
+                            index--;
+                        }
+                        break;
+                    case 3:
+                        p.editKeadaanPasien();
+                    default:
+                        System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                        break;
+                }
+            }
+        }
+        else{
+            System.out.println("Tidak ada pasien yang di assign ke anda");
+        }
+
     }
 
 }

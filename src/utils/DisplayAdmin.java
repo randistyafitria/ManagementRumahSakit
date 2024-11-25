@@ -1,5 +1,9 @@
 package utils;
 
+import java.util.List;
+
+import data.JanjiTemu;
+
 public class DisplayAdmin {
 
     public static void displayAdmin(){
@@ -190,9 +194,131 @@ public class DisplayAdmin {
     // tambah juga detailnya kayak function dibawah
     // jadwalUlangJanjiTemu
     public static void displayAdminJanjiTemu(){
+        int choice  = 1;
+        while(choice != 0){
 
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Lihat Janji Temu Aktif");
+            System.out.println("2. Lihat Janji Temu Pending");
+            System.out.println("3. Tambahkan Janji Temu");
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine(); 
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    displayAdminDetailJTAktif();;
+                    break;
+                case 2:
+                    displayAdminDetailJTPending();
+                    break;
+                case 3: 
+                    Global.jadwalkanJanjiTemu();
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
+            }
+        }
     }
 
+
+    public static void displayAdminDetailJTAktif(){
+        int choice = 1;
+        int index = 0;
+
+        while(choice != 0){
+            if(Global.janjiTemuAktif.isEmpty()){
+                System.out.println("Tidak ada janji temu yang belum disetujui");
+                return;
+            }
+            System.out.println("====================================");
+            JanjiTemu currJt = Global.janjiTemuAktif.get(index);
+            currJt.getDetail();
+            System.out.println(currJt.getStatusPersetujuan());
+            System.out.println("====================================");
+
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Selanjutnya");
+            System.out.println("2. Sebelumnya");
+            System.out.println("3. Batalkan Janji Temu");
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine(); 
+
+
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    if(index < Global.janjiTemuAktif.size() - 1){
+                        index++;
+                    }                    
+                    break;
+                case 2:
+                    if(index > 0){
+                        index--;
+                    }
+                    break;
+                case 3: 
+                    Global.janjiTemuAktif.remove(index);
+                    break;
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
+            }
+        }
+    }
+
+    public static void displayAdminDetailJTPending(){
+        int choice = 1;
+        int index = 0;
+
+        while(choice != 0){
+            if(Global.janjiTemuPending.isEmpty()){
+                System.out.println("Tidak ada janji temu yang belum disetujui");
+                return;
+            }
+            System.out.println("====================================");
+            JanjiTemu currJt = Global.janjiTemuPending.get(index);
+            currJt.getDetail();
+            System.out.println(currJt.getStatusPersetujuan());
+            System.out.println("====================================");
+
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Selanjutnya");
+            System.out.println("2. Sebelumnya");
+            System.out.println("3. Batalkan Janji Temu");
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine(); 
+
+
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    if(index < Global.janjiTemuPending.size() - 1){
+                        index++;
+                    }                    
+                    break;
+                case 2:
+                    if(index > 0){
+                        index--;
+                    }
+                    break;
+                case 3: 
+                    Global.janjiTemuPending.remove(index);
+                    break;
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
+            }
+        }
+    }
 
     //TODO ?: Mungkin buat disini bisa juga tambahin assign dokter ke pasien? 
     public static void displayAdminDetailDokter(){

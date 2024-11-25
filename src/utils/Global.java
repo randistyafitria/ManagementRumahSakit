@@ -1,5 +1,6 @@
 package utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
@@ -257,33 +258,63 @@ public class Global {
     }
 
 
-    public static void jadwalkanJanjiTemu(Dokter dokter, Pasien pasien, Ruangan ruangan, Resepsionis resepsionis) {
-        System.out.print("Enter a date (dd MM yyyy): ");
-        
-        String inputDate = scanner.nextLine();
-        
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
-        
-        try {
-            Date date = dateFormat.parse(inputDate);
-            JanjiTemu janjiTemu = new JanjiTemu(generateId("JT"), date, dokter, pasien);
-
-            System.out.println(date);
+    public static void jadwalkanJanjiTemu() {
+        try{
+            System.out.println("Masukkan Id / Nama Dokter");
+            String identifier = Global.scanner.nextLine();
     
-            resepsionis.jadwalkanJanjiTemu(pasien, dokter);
-            ruangan.tetapkanUntukPasien(pasien);
-
-
-            janjiTemuPending.add(janjiTemu);
+            Dokter dokter = Global.searchDokter(identifier);
     
-            System.out.println("Janji temu berhasil dijadwalkan antara " + pasien.getNama() + " dan " + dokter.getNama() + ".");
-        } 
-
-        catch (Exception e) {
-            System.out.println("Input invalid, pastikan gunakan dd MM yyyy.");
+            if(dokter == null){
+                System.out.println("Data Dokter tidak ditemukan, Mohon ulangi operasi lagi");
+                return;
+            }
+    
+            System.out.println("Masukkan Id / Nama Pasien");
+            identifier = Global.scanner.nextLine();
+            Pasien pasien = Global.searchPasien(identifier);
+    
+    
+            if(pasien == null){
+                System.out.println("Data Pasien tidak ditemukan, Mohon ulangi operasi lagi");
+                return;
+            }
+    
+            Ruangan ru = Global.temukanRuanganKosong();
+    
+            if(ru == null){
+                System.out.println("Tidak ada ruangan yang tersedia, Janji Temu tidak bisa dijadwalkan");
+                return;
+            }
+            System.out.print("Enter a date (dd MM yyyy): ");
+            
+            String inputDate = scanner.nextLine();
+            
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
+            
+            
+            try {
+                Date date = dateFormat.parse(inputDate);
+                JanjiTemu janjiTemu = new JanjiTemu(generateId("JT"), date, dokter, pasien);
+    
+                System.out.println(date);
+                ru.tetapkanUntukPasien(pasien);
+                janjiTemuPending.add(janjiTemu);
+    
+                System.out.println("Janji temu berhasil dijadwalkan antara " + pasien.getNama() + " dan " + dokter.getNama() + ".");
+            } 
+            catch (ParseException e) {
+                System.out.println("Input invalid, pastikan gunakan format dd MM yyyy yang benar.");
+            } 
+            catch (Exception e) {
+                System.out.println("Terjadi kesalahan yang tidak terduga: " + e.getMessage());
+            }
         }
-        
-
+        catch (IllegalArgumentException e) {
+            System.out.println("Input tidak valid: " + e.getMessage());
+            Global.scanner.nextLine();
+        }
+    
     }
 
     public static void assignDokter(Dokter d, Pasien p){
@@ -320,7 +351,6 @@ public class Global {
 
 
     public static List<JanjiTemu> getFilteredJanjiTemuAktif(String identifier){
-        //identifier is either doc id/pasien id, im lazy so i combine it hehe
         return janjiTemuAktif.stream()
         .filter(jt -> jt.getPasien().getId().equals(identifier) || 
                       jt.getDokter().getId().equals(identifier))

@@ -1,17 +1,11 @@
 package data;
 
-import java.util.InputMismatchException;
-
 import utils.Global;
 
 public class Resepsionis extends Orang {
 
     public Resepsionis(String nama, int umur, String jenisKelamin, String alamat, String nomorKontak, String idKaryawan) {
         super(nama, umur, jenisKelamin, alamat, nomorKontak, idKaryawan);
-    }
-
-    public void jadwalkanJanjiTemu(Pasien pasien, Dokter dokter) {
-        System.out.println("Resepsionis " + getNama() + " menjadwalkan janji temu antara pasien " + pasien.getNama() + " dengan dokter " + dokter.getNama());
     }
 
 
@@ -34,7 +28,7 @@ public class Resepsionis extends Orang {
                     getDetail();
                     break;
                 case 2:
-                    displayJadwalkanJanjiTemu();
+                    jadwalkanJanjiTemu();
                     break;
                 case 3: 
                     displayAssignPasien();
@@ -48,41 +42,8 @@ public class Resepsionis extends Orang {
         }
     }
 
-    public void displayJadwalkanJanjiTemu(){
-        try{
-            System.out.println("Masukkan Id / Nama Dokter");
-            String identifier = Global.scanner.nextLine();
-    
-            Dokter dokter = Global.searchDokter(identifier);
-    
-            if(dokter == null){
-                System.out.println("Data Dokter tidak ditemukan, Mohon ulangi operasi lagi");
-                return;
-            }
-    
-            System.out.println("Masukkan Id / Nama Pasien");
-            identifier = Global.scanner.nextLine();
-            Pasien pasien = Global.searchPasien(identifier);
-    
-    
-            if(pasien == null){
-                System.out.println("Data Pasien tidak ditemukan, Mohon ulangi operasi lagi");
-                return;
-            }
-    
-            Ruangan ru = Global.temukanRuanganKosong();
-    
-            if(ru == null){
-                System.out.println("Tidak ada ruangan yang tersedia, Janji Temu tidak bisa dijadwalkan");
-                return;
-            }
-            Global.jadwalkanJanjiTemu(dokter, pasien, ru, this);
-        }
-        catch(InputMismatchException e){
-            System.out.println("Input tidak valid.");
-            Global.scanner.nextLine();
-
-        }
+    public void jadwalkanJanjiTemu(){
+        Global.jadwalkanJanjiTemu();
     }
 
     public void displayAssignPasien(){

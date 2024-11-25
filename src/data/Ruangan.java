@@ -1,8 +1,5 @@
 package data;
 
-import data.Pasien;
-import utils.Global;
-
 public class Ruangan {
     private int nomorRuangan;
     private String tipeRuangan;
@@ -32,7 +29,6 @@ public class Ruangan {
     }
 
     
-
     public void tetapkanUntukPasien(Pasien pasien) {
         if (isTersedia) {
             isTersedia = false;
