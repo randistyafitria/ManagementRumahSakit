@@ -1,14 +1,14 @@
 import utils.DisplayAdmin;
 import utils.Global;
 
-import utils.auth.AuthDokter;
-import utils.auth.AuthPasien;
-import utils.auth.AuthResepsionis;
+import utils.auth.DoctorAuth;
+import utils.auth.PatientAuth;
+import utils.auth.ReceptionistAuth;
 import test.Init;
 
-import data.Pasien;
-import data.Dokter;
-import data.Resepsionis;
+import data.Patient;
+import data.Doctor;
+import data.Receptionist;
 
 
 
@@ -37,32 +37,32 @@ public class Main {
                     break;
 
                 case 1:
-                    Pasien p = AuthPasien.auth();
+                    Patient p = PatientAuth.auth();
 
                     if(p == null){
                         
                         System.out.println("Data Pasien tidak ditemukan");
                         break;
                     }
-                    p.displayPasien();
+                    p.patientDisplay();
                     break;
 
                 case 2:
-                    Dokter d = AuthDokter.auth();
+                    Doctor d = DoctorAuth.auth();
                     if(d == null){
                         System.out.println("Data Dokter tidak ditemukan");
                         break;
                     }
-                    d.displayDokter();                
+                    d.doctorDisplay();
                     break;
 
                 case 3:
-                    Resepsionis r = AuthResepsionis.auth();
+                    Receptionist r = ReceptionistAuth.auth();
                     if(r == null){
                         System.out.println("Data Resepsionis tidak ditemukan");
                         break;
                     }
-                    r.displayResepsionis();                    
+                    r.receptionistDisplay();
                     break;
 
                 case 4:

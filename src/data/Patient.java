@@ -4,61 +4,61 @@ import java.util.List;
 
 import utils.Global;
 
-public class Pasien extends Orang {
-    private String riwayatMedis;
-    private String kondisiSaatIni;
-    private Ruangan ruanganPerawatan = null;
+public class Patient extends Person {
+    private String medicalHistory;
+    private String currentCondition;
+    private Room treatmentRoom = null;
 
-    public Pasien(String nama, int umur, String jenisKelamin, String alamat, String nomorKontak, String idPasien, String riwayatMedis, String kondisiSaatIni) {
-        super(nama, umur, jenisKelamin, alamat, nomorKontak, idPasien);
-        this.riwayatMedis = riwayatMedis;
-        this.kondisiSaatIni = kondisiSaatIni;
+    public Patient(String name, int age, String gender, String address, String contact, String patientId, String medicalHistory, String currentCondition) {
+        super(name, age, gender, address, contact, patientId);
+        this.medicalHistory = medicalHistory;
+        this.currentCondition = currentCondition;
     }
 
-    public String getRiwayatMedis() {
-        return riwayatMedis;
+    public String getMedicalHistory() {
+        return medicalHistory;
     }
 
-    public String getKondisiSaatIni() {
-        return kondisiSaatIni;
+    public String getCurrentCondition() {
+        return currentCondition;
     }
 
-    public Ruangan getRuanganPerawatan() {
-        return ruanganPerawatan;
+    public Room getTreatmentRoom() {
+        return treatmentRoom;
     }
 
 
-    public void setRiwayatMedis(String riwayatMedis) {
-        this.riwayatMedis = riwayatMedis;
+    public void setMedicalHistory(String medicalHistory) {
+        this.medicalHistory = medicalHistory;
     }
 
-    public void setKondisiSaatIni(String kondisiSaatIni) {
-        this.kondisiSaatIni = kondisiSaatIni;
+    public void setCurrentCondition(String currentCondition) {
+        this.currentCondition = currentCondition;
     }
 
-    public void setRuanganPerawatan(Ruangan ruanganPerawatan) {
-        this.ruanganPerawatan = ruanganPerawatan;
+    public void setTreatmentRoom(Room treatmentRoom) {
+        this.treatmentRoom = treatmentRoom;
     }
 
     @Override
     public void getDetail() {
         System.out.println("ID: " + getId());
-        System.out.println("Nama: " + getNama());
-        System.out.println("Umur: " + getUmur());
-        System.out.println("Jenis Kelamin: " + getJenisKelamin());
-        System.out.println("Alamat: " + getAlamat());
-        System.out.println("Nomor Kontak: " + getNomorKontak());
-        System.out.println("Riwayat Medis: " + riwayatMedis);
-        System.out.println("Kondisi Saat Ini: " + kondisiSaatIni);
+        System.out.println("Nama: " + getName());
+        System.out.println("Umur: " + getAge());
+        System.out.println("Jenis Kelamin: " + getGender());
+        System.out.println("Alamat: " + getAddress());
+        System.out.println("Nomor Kontak: " + getContact());
+        System.out.println("Riwayat Medis: " + medicalHistory);
+        System.out.println("Kondisi Saat Ini: " + currentCondition);
 
-        if(ruanganPerawatan != null){
-            System.out.println("Saat ini sedang dirawat di ruangan: " + ruanganPerawatan.getNomorRuangan());
+        if(treatmentRoom != null){
+            System.out.println("Saat ini sedang dirawat di ruangan: " + treatmentRoom.getRoomNumber());
             return;
         }
         System.out.println("Sedang tidak dirawat di ruangan");
     }
 
-    public void displayPasien(){
+    public void patientDisplay(){
         int choice = 1;
         while(choice != 0){
             System.out.println("====================================");
@@ -78,10 +78,10 @@ public class Pasien extends Orang {
                     getDetail();
                     break;
                 case 2:
-                    listJanjiTemuAktif();
+                    listActiveAppointment();
                     break;
                 case 3: 
-                    listJanjiTemuPending();
+                    listPendingAppointment();
                     break;
             
                 default:
@@ -94,14 +94,14 @@ public class Pasien extends Orang {
 
 
     //temp, add so it can go left, right
-    public void listJanjiTemuAktif(){
+    public void listActiveAppointment(){
         int choice = 1;
         int index = 0;
 
-        List<JanjiTemu> listJanjiTemuAktif = Global.getFilteredJanjiTemuAktif(getId());
+        List<Appointment> listActiveAppointment = Global.getFilteredActiveAppointments(getId());
 
 
-        if(listJanjiTemuAktif.isEmpty()){
+        if(listActiveAppointment.isEmpty()){
             System.out.println("Anda tidak mempunyai janji temu yang sedang aktif");
             return;
         }
@@ -109,9 +109,9 @@ public class Pasien extends Orang {
 
         while(choice != 0){
             System.out.println("====================================");
-            JanjiTemu currJt = listJanjiTemuAktif.get(index);
+            Appointment currJt = listActiveAppointment.get(index);
             currJt.getDetail();
-            System.out.println(currJt.getStatusPersetujuan());
+            System.out.println(currJt.getAgrementStatus());
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -127,7 +127,7 @@ public class Pasien extends Orang {
                 case 0:
                     break;
                 case 1:
-                    if(index < listJanjiTemuAktif.size() - 1){
+                    if(index < listActiveAppointment.size() - 1){
                         index++;
                     }                    
                     break;
@@ -145,23 +145,23 @@ public class Pasien extends Orang {
 
 
     //need fix, same with the dokter one, 
-    public void listJanjiTemuPending(){
+    public void listPendingAppointment(){
 
         int choice = 1;
         int index = 0;
 
-        List<JanjiTemu> listJanjiTemuPending = Global.getFilteredJanjiTemuPending(getId());
+        List<Appointment> listPendingAppointment = Global.getFilteredPendingAppointments(getId());
 
-        if(listJanjiTemuPending.isEmpty()){
+        if(listPendingAppointment.isEmpty()){
             System.out.println("Tidak ada janji temu yang belum disetujui");
             return;
         }
 
         while(choice != 0){
             System.out.println("====================================");
-            JanjiTemu currJt = listJanjiTemuPending.get(index);
+            Appointment currJt = listPendingAppointment.get(index);
             currJt.getDetail();
-            System.out.println(currJt.getStatusPersetujuan());
+            System.out.println(currJt.getAgrementStatus());
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -179,7 +179,7 @@ public class Pasien extends Orang {
                 case 0:
                     break;
                 case 1:
-                    if(index < listJanjiTemuPending.size() - 1){
+                    if(index < listPendingAppointment.size() - 1){
                         index++;
                     }                    
                     break;
@@ -189,10 +189,10 @@ public class Pasien extends Orang {
                     }
                     break;
                 case 3: 
-                    currJt.setujuiJanjiTemuPasien();
+                    currJt.patientAcceptAppointment();
                     break;
                 case 4: 
-                    currJt.tolakJanjiTemuPasien();
+                    currJt.patientRejectAppointment();
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -202,7 +202,7 @@ public class Pasien extends Orang {
     }
 
 
-    public void editPasien(){
+    public void editPatient(){
         int choice = 1;
         while (choice != 0){
             System.out.println("====================================");
@@ -216,34 +216,34 @@ public class Pasien extends Orang {
             choice = Global.scanner.nextInt();
             Global.scanner.nextLine();
             
-            String inputBaru = "";
+            String newInput = "";
             switch (choice) {
                 case 0:
                     break;
                 case 1:
                     System.out.print("Masukan Nama Baru: ");
-                    inputBaru = Global.scanner.nextLine();
-                    setNama(inputBaru);
-                    System.out.println("Nama berhasil diubah menjadi " + getNama());
+                    newInput = Global.scanner.nextLine();
+                    setName(newInput);
+                    System.out.println("Nama berhasil diubah menjadi " + getName());
                     break;
                 case 2:
                     System.out.print("Masukan Umur Baru: ");
-                    inputBaru = Global.scanner.nextLine();
+                    newInput = Global.scanner.nextLine();
                     try{
-                        int umurBaru = Integer.parseInt(inputBaru);
-                        setUmur(umurBaru);
-                        System.out.print("Umur berhasil diubah menjadi " + getUmur());
+                        int newAge = Integer.parseInt(newInput);
+                        setAge(newAge);
+                        System.out.print("Umur berhasil diubah menjadi " + getAge());
                     } catch (NumberFormatException e) {
-                        System.out.println("Input umur tidak valid. Pastikan memasukkan angka.");
+                        System.out.println("Input age tidak valid. Pastikan memasukkan angka.");
                     }
                     break;
                 case 3:
                     while (true) {
                         System.out.print("Masukkan jenis kelamin baru (Laki Laki/Perempuan): ");
-                        inputBaru = Global.scanner.nextLine();
-                        if (inputBaru.equalsIgnoreCase("Laki Laki") || inputBaru.equalsIgnoreCase("Perempuan")) {
-                            setJenisKelamin(inputBaru);
-                            System.out.print("Jenis kelamin berhasil diubah menjadi " + getJenisKelamin());
+                        newInput = Global.scanner.nextLine();
+                        if (newInput.equalsIgnoreCase("Laki Laki") || newInput.equalsIgnoreCase("Perempuan")) {
+                            setGender(newInput);
+                            System.out.print("Jenis kelamin berhasil diubah menjadi " + getGender());
                             break;
                         } else {
                             System.out.println("Input tidak valid. Silakan masukkan 'Laki Laki' atau 'Perempuan'.");
@@ -251,22 +251,22 @@ public class Pasien extends Orang {
                     }
                     break;
                 case 4:
-                    System.out.print("Masukan alamat baru: ");
-                    inputBaru = Global.scanner.nextLine();
-                    setAlamat(inputBaru);
-                    System.out.println("Nama berhasil diubah menjadi " + getAlamat());
+                    System.out.print("Masukan address baru: ");
+                    newInput = Global.scanner.nextLine();
+                    setAddress(newInput);
+                    System.out.println("Nama berhasil diubah menjadi " + getAddress());
                     break;
                 case 5:
                     System.out.print("Masukan nomor kontak baru: ");
-                    inputBaru = Global.scanner.nextLine();
-                    setNomorKontak(inputBaru);
-                    System.out.println("Nama berhasil diubah menjadi " + getNomorKontak());
+                    newInput = Global.scanner.nextLine();
+                    setContact(newInput);
+                    System.out.println("Nama berhasil diubah menjadi " + getContact());
                     break;
                 case 6:
                     System.out.print("Masukan riwayat medis Baru: ");
-                    inputBaru = Global.scanner.nextLine();
-                    setRiwayatMedis(inputBaru);
-                    System.out.println("Riwayat medis berhasil diubah menjadi " + riwayatMedis);
+                    newInput = Global.scanner.nextLine();
+                    setMedicalHistory(newInput);
+                    System.out.println("Riwayat medis berhasil diubah menjadi " + medicalHistory);
                     break;
 
                 default:
@@ -278,12 +278,12 @@ public class Pasien extends Orang {
 
 
     //TODO: Error handling
-    public void editKeadaanPasien(){
-        System.out.println("Keadaan Pasien saat ini: " + kondisiSaatIni);
+    public void editPatientCondition (){
+        System.out.println("Keadaan Pasien saat ini: " + currentCondition);
         System.out.print("Silahkan input kondisi pasien yang terbaru: ");
-        String kondisiBaru = Global.scanner.nextLine();
+        String newCondition = Global.scanner.nextLine();
 
-        setKondisiSaatIni(kondisiBaru);
+        setCurrentCondition(newCondition);
     }
 
 

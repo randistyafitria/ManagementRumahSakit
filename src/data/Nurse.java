@@ -4,37 +4,37 @@ import java.util.ArrayList;
 
 import utils.Global;
 
-public class Perawat extends Orang {
-    private String spesialisasi;
+public class Nurse extends Person {
+    private String specialization;
 
-    public Perawat(String nama, int umur, String jenisKelamin, String alamat, String nomorKontak, String idPerawat, String spesialisasi) {
-        super(nama, umur, jenisKelamin, alamat, nomorKontak ,idPerawat);
-        this.spesialisasi = spesialisasi;
+    public Nurse(String name, int age, String gender, String address, String contact, String nurseId, String specialization) {
+        super(name, age, gender, address, contact ,nurseId);
+        this.specialization = specialization;
     }
 
-    public String getSpesialisasi() {
-        return spesialisasi;
+    public String getSpecialization() {
+        return specialization;
     }
 
-    public void setSpesialisasi(String spesialisasi){
-        this.spesialisasi = spesialisasi;
+    public void setSpecialization(String specialization){
+        this.specialization = specialization;
     }
 
 
     @Override
     public void getDetail() {
         System.out.println("ID: " + getId());
-        System.out.println("Nama: " + getNama());
-        System.out.println("Umur: " + getUmur());
-        System.out.println("Jenis Kelamin: " + getJenisKelamin());
-        System.out.println("Alamat: " + getAlamat());
-        System.out.println("Nomor Kontak: " + getNomorKontak());
-        System.out.println("Spesialisasi: " + spesialisasi);
+        System.out.println("Nama: " + getName());
+        System.out.println("Umur: " + getAge());
+        System.out.println("Jenis Kelamin: " + getGender());
+        System.out.println("Alamat: " + getAddress());
+        System.out.println("Nomor Kontak: " + getContact());
+        System.out.println("Spesialisasi: " + specialization);
     }
 
     public void listPasienDirawat(){
-        if(Global.dokterListPasien.containsKey(getId())){
-            ArrayList<Pasien> pasienList = Global.perawatListPasien.get(getId());
+        if(Global.doctorListPatient.containsKey(getId())){
+            ArrayList<Patient> pasienList = Global.nurseListPatient.get(getId());
             int choice  = 1;
             int index = 0;
     
@@ -45,7 +45,7 @@ public class Perawat extends Orang {
     
             while(choice != 0){
                 System.out.println("====================================");
-                Pasien p = pasienList.get(index);
+                Patient p = pasienList.get(index);
                 p.getDetail();
                 System.out.println("====================================");
     
@@ -73,7 +73,7 @@ public class Perawat extends Orang {
                         }
                         break;
                     case 3:
-                        p.editKeadaanPasien();
+                        p.editPatientCondition();
                     default:
                         System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
                         break;

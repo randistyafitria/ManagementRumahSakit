@@ -9,23 +9,24 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+
 import java.util.Random;
 
 import data.*;
 
 public class Global {
-    public static List<Dokter> daftarDokter = new ArrayList<>();
-    public static List<Pasien> daftarPasien = new ArrayList<>();
-    public static List<Perawat> daftarPerawat = new ArrayList<>();
-    public static List<Resepsionis> daftarResepsionis = new ArrayList<>();
-    public static List<Ruangan> daftarRuangan = new ArrayList<>();
+    public static List<Doctor> doctorList = new ArrayList<>();
+    public static List<Patient> patientList = new ArrayList<>();
+    public static List<Nurse> nurseList = new ArrayList<>();
+    public static List<Receptionist> receptionistList = new ArrayList<>();
+    public static List<Room> roomList = new ArrayList<>();
 
-    public static List<JanjiTemu> janjiTemuPending = new ArrayList<>();
-    public static List<JanjiTemu> janjiTemuAktif = new ArrayList<>();
+    public static List<Appointment> pendingAppointmentList = new ArrayList<>();
+    public static List<Appointment> activeAppointmentList = new ArrayList<>();
 
 
-    public static HashMap<String, ArrayList<Pasien>> dokterListPasien = new HashMap<>();
-    public static HashMap<String, ArrayList<Pasien>> perawatListPasien = new HashMap<>();
+    public static HashMap<String, ArrayList<Patient>> doctorListPatient = new HashMap<>();
+    public static HashMap<String, ArrayList<Patient>> nurseListPatient = new HashMap<>();
 
     public static Scanner scanner = new Scanner(System.in);
 
@@ -51,35 +52,35 @@ public class Global {
     }
 
 
-    public static void tambahDokter() {
+    public static void addDoctor() {
         try {
             System.out.println("\n=== Tambah Dokter ===");
 
-            System.out.print("Nama Dokter: ");
-            String nama = scanner.nextLine();
+            System.out.print("name Dokter: ");
+            String name = scanner.nextLine();
     
-            System.out.print("Umur Dokter: ");
-            int umur = scanner.nextInt();
+            System.out.print("age Dokter: ");
+            int age = scanner.nextInt();
             scanner.nextLine();
     
             System.out.print("Jenis Kelamin Dokter: ");
-            String jenisKelamin = scanner.nextLine();
+            String gender = scanner.nextLine();
     
-            System.out.print("Alamat Dokter: ");
-            String alamat = scanner.nextLine();
+            System.out.print("address Dokter: ");
+            String address = scanner.nextLine();
     
             System.out.print("Nomor Kontak Dokter: ");
-            String nomorKontak = scanner.nextLine();
+            String contact = scanner.nextLine();
 
             System.out.print("Spesialisasi: ");
-            String spesialisasi = scanner.nextLine();
+            String specialization = scanner.nextLine();
     
             System.out.print("Tahun Pengalaman: ");
-            int tahunPengalaman = scanner.nextInt();
+            int yearsOfExperience = scanner.nextInt();
             scanner.nextLine();
     
-            Dokter dokter = new Dokter(nama, umur, jenisKelamin, alamat, nomorKontak, generateId("DR"), spesialisasi, tahunPengalaman);
-            daftarDokter.add(dokter);
+            Doctor doctor = new Doctor(name, age, gender, address, contact, generateId("DR"), specialization, yearsOfExperience);
+            doctorList.add(doctor);
             System.out.println("Dokter berhasil ditambahkan.");
         } 
         catch (Exception e) {
@@ -93,35 +94,36 @@ public class Global {
 
 
 
-    public static void tambahPasien() {
+    public static void addPatient() {
         try {
             System.out.println("\n=== Tambah Pasien ===");
-            System.out.print("Nama Pasien: ");
-            String nama = scanner.nextLine();
+            System.out.print("name Pasien: ");
+            String name = scanner.nextLine();
     
-            System.out.print("Umur Pasien: ");
-            int umur = scanner.nextInt();
+            System.out.print("age Pasien: ");
+            int age = scanner.nextInt();
             scanner.nextLine();
     
             System.out.print("Jenis Kelamin Pasien: ");
-            String jenisKelamin = scanner.nextLine();
+            String gender = scanner.nextLine();
     
-            System.out.print("Alamat Pasien: ");
-            String alamat = scanner.nextLine();
+            System.out.print("address Pasien: ");
+            String address = scanner.nextLine();
     
             System.out.print("Nomor Kontak Pasien: ");
-            String nomorKontak = scanner.nextLine();
+            String contact = scanner.nextLine();
     
             System.out.print("Riwayat Medis: ");
-            String riwayatMedis = scanner.nextLine();
+            String medicalHistory = scanner.nextLine();
     
             System.out.print("Kondisi Saat Ini: ");
-            String kondisiSaatIni = scanner.nextLine();
+            String currentCondition = scanner.nextLine();
     
-            Pasien pasien = new Pasien(nama, umur, jenisKelamin, alamat, nomorKontak, generateId("PA"), riwayatMedis, kondisiSaatIni);
-            daftarPasien.add(pasien);
+            Patient patient = new Patient(name, age, gender, address, contact, generateId("PA"), medicalHistory, currentCondition);
+            patientList.add(patient);
             System.out.println("Pasien berhasil ditambahkan.");
         } 
+
         catch (Exception e) {
             clearConsole();
             System.out.println(e);
@@ -130,31 +132,31 @@ public class Global {
         }
     }
 
-    public static void tambahPerawat() {
+    public static void addNurse() {
         try {
             System.out.println("\n=== Tambah Perawat ===");
 
-            System.out.print("Nama Perawat: ");
-            String nama = scanner.nextLine();
+            System.out.print("name Perawat: ");
+            String name = scanner.nextLine();
     
-            System.out.print("Umur Perawat: ");
-            int umur = scanner.nextInt();
+            System.out.print("age Perawat: ");
+            int age = scanner.nextInt();
             scanner.nextLine();
     
             System.out.print("Jenis Kelamin Perawat: ");
-            String jenisKelamin = scanner.nextLine();
+            String gender = scanner.nextLine();
     
-            System.out.print("Alamat Perawat: ");
-            String alamat = scanner.nextLine();
+            System.out.print("address Perawat: ");
+            String address = scanner.nextLine();
     
             System.out.print("Nomor Kontak Perawat: ");
-            String nomorKontak = scanner.nextLine();
+            String contact = scanner.nextLine();
     
             System.out.print("Spesialisasi: ");
-            String spesialisasi = scanner.nextLine();
+            String specialization = scanner.nextLine();
     
-            Perawat perawat = new Perawat(nama, umur, jenisKelamin, alamat, nomorKontak,generateId("PR"), spesialisasi);
-            daftarPerawat.add(perawat);
+            Nurse perawat = new Nurse(name, age, gender, address, contact,generateId("PR"), specialization);
+            nurseList.add(perawat);
             System.out.println("Perawat berhasil ditambahkan.");
         } 
         catch (Exception e) {
@@ -165,28 +167,28 @@ public class Global {
         }
     }
 
-    public static void tambahResepsionis() {
+    public static void addReceptionist() {
         try {
             System.out.println("\n=== Tambah Resepsionis ===");
 
-            System.out.print("Nama Resepsionis: ");
-            String nama = scanner.nextLine();
+            System.out.print("name Resepsionis: ");
+            String name = scanner.nextLine();
     
-            System.out.print("Umur Resepsionis: ");
-            int umur = scanner.nextInt();
+            System.out.print("age Resepsionis: ");
+            int age = scanner.nextInt();
             scanner.nextLine();
     
             System.out.print("Jenis Kelamin Resepsionis: ");
-            String jenisKelamin = scanner.nextLine();
+            String gender = scanner.nextLine();
     
-            System.out.print("Alamat Resepsionis: ");
-            String alamat = scanner.nextLine();
+            System.out.print("address Resepsionis: ");
+            String address = scanner.nextLine();
     
             System.out.print("Nomor Kontak Resepsionis: ");
-            String nomorKontak = scanner.nextLine();
+            String contact = scanner.nextLine();
     
-            Resepsionis resepsionis = new Resepsionis(nama, umur, jenisKelamin, alamat, nomorKontak, generateId("RP"));
-            daftarResepsionis.add(resepsionis);
+            Receptionist resepsionis = new Receptionist(name, age, gender, address, contact, generateId("RP"));
+            receptionistList.add(resepsionis);
             System.out.println("Resepsionis berhasil ditambahkan.");
         } catch (Exception e) {
             clearConsole();
@@ -196,7 +198,7 @@ public class Global {
         }
     }
 
-    public static void tambahRuangan() {
+    public static void addRoom() {
 
         try {
             System.out.println("\n=== Tambah Ruangan ===");
@@ -212,8 +214,8 @@ public class Global {
             boolean isTersedia = scanner.nextBoolean();
             scanner.nextLine();
     
-            Ruangan ruangan = new Ruangan(nomorRuangan, tipeRuangan, isTersedia);
-            daftarRuangan.add(ruangan);
+            Room ruangan = new Room(nomorRuangan, tipeRuangan, isTersedia);
+            roomList.add(ruangan);
             System.out.println("Ruangan berhasil ditambahkan.");   
         } 
         catch (Exception e) {
@@ -223,10 +225,10 @@ public class Global {
         }
     }
 
-    public static Dokter searchDokter(String identifier){
+    public static Doctor searchDoctor(String identifier){
         identifier = identifier.trim();
-        for(Dokter d : daftarDokter){
-            if(d.getNama().equals(identifier) || d.getId().equals(identifier)){
+        for(Doctor d : doctorList){
+            if(d.getName().equals(identifier) || d.getId().equals(identifier)){
                 return d;
             }
         }
@@ -234,10 +236,10 @@ public class Global {
         return null;
     }
 
-    public static Perawat searchPerawat(String identifier){
+    public static Nurse searchNurse(String identifier){
         identifier = identifier.trim();
-        for(Perawat p : daftarPerawat){
-            if(p.getNama().equals(identifier) || p.getId().equals(identifier)){
+        for(Nurse p : nurseList){
+            if(p.getName().equals(identifier) || p.getId().equals(identifier)){
                 return p;
             }
         }
@@ -245,11 +247,11 @@ public class Global {
         return null;
     }
 
-    public static Pasien searchPasien(String identifier){
+    public static Patient searchPatient(String identifier){
         identifier = identifier.trim();
 
-        for(Pasien p : daftarPasien){
-            if(p.getNama().equals(identifier) || p.getId().equals(identifier)){
+        for(Patient p : patientList){
+            if(p.getName().equals(identifier) || p.getId().equals(identifier)){
                 return p;
             }
         }
@@ -258,29 +260,29 @@ public class Global {
     }
 
 
-    public static void jadwalkanJanjiTemu() {
+    public static void scheduleAppointment() {
         try{
-            System.out.println("Masukkan Id / Nama Dokter");
+            System.out.println("Masukkan Id / name Dokter");
             String identifier = Global.scanner.nextLine();
     
-            Dokter dokter = Global.searchDokter(identifier);
+            Doctor doctor = Global.searchDoctor(identifier);
     
-            if(dokter == null){
+            if(doctor == null){
                 System.out.println("Data Dokter tidak ditemukan, Mohon ulangi operasi lagi");
                 return;
             }
     
-            System.out.println("Masukkan Id / Nama Pasien");
+            System.out.println("Masukkan Id / name Pasien");
             identifier = Global.scanner.nextLine();
-            Pasien pasien = Global.searchPasien(identifier);
+            Patient patient = Global.searchPatient(identifier);
     
     
-            if(pasien == null){
+            if(patient == null){
                 System.out.println("Data Pasien tidak ditemukan, Mohon ulangi operasi lagi");
                 return;
             }
     
-            Ruangan ru = Global.temukanRuanganKosong();
+            Room ru = Global.temukanRuanganKosong();
     
             if(ru == null){
                 System.out.println("Tidak ada ruangan yang tersedia, Janji Temu tidak bisa dijadwalkan");
@@ -295,13 +297,13 @@ public class Global {
             
             try {
                 Date date = dateFormat.parse(inputDate);
-                JanjiTemu janjiTemu = new JanjiTemu(generateId("JT"), date, dokter, pasien);
+                Appointment janjiTemu = new Appointment(generateId("JT"), date, doctor, patient);
     
                 System.out.println(date);
-                ru.tetapkanUntukPasien(pasien);
-                janjiTemuPending.add(janjiTemu);
+                ru.setForPatient(patient);
+                pendingAppointmentList.add(janjiTemu);
     
-                System.out.println("Janji temu berhasil dijadwalkan antara " + pasien.getNama() + " dan " + dokter.getNama() + ".");
+                System.out.println("Janji temu berhasil dijadwalkan antara " + patient.getName() + " dan " + doctor.getName() + ".");
             } 
             catch (ParseException e) {
                 System.out.println("Input invalid, pastikan gunakan format dd MM yyyy yang benar.");
@@ -317,69 +319,69 @@ public class Global {
     
     }
 
-    public static void assignDokter(Dokter d, Pasien p){
-        if(dokterListPasien.containsKey(d.getId())){
-            dokterListPasien.get(d.getId()).add(p);
+    public static void assignDoctor(Doctor d, Patient p){
+        if(doctorListPatient.containsKey(d.getId())){
+            doctorListPatient.get(d.getId()).add(p);
             System.out.println("Pasien Berhasil ditambahkan!");
             return;
         }
-        dokterListPasien.put(d.getId(), new ArrayList<>());
-        dokterListPasien.get(d.getId()).add(p);
+        doctorListPatient.put(d.getId(), new ArrayList<>());
+        doctorListPatient.get(d.getId()).add(p);
 
         System.out.println("Pasien Berhasil di tambahkan");
     }
 
-    public static void assignPerawat(Perawat pr, Pasien p){
-        if(perawatListPasien.containsKey(pr.getId())){
-            perawatListPasien.get(pr.getId()).add(p);
+    public static void assignNurse(Nurse pr, Patient p){
+        if(nurseListPatient.containsKey(pr.getId())){
+            nurseListPatient.get(pr.getId()).add(p);
             System.out.println("Pasien Berhasil ditambahkan!");
             return;
         }
-        perawatListPasien.put(pr.getId(), new ArrayList<>());
-        perawatListPasien.get(pr.getId()).add(p);
+        nurseListPatient.put(pr.getId(), new ArrayList<>());
+        nurseListPatient.get(pr.getId()).add(p);
 
         System.out.println("Pasien Berhasil di tambahkan");
     }
 
-    public static List<JanjiTemu> getFilteredJanjiTemuPending(String identifier){
-        //identifier is either doc id/pasien id, im lazy so i combine it hehe
-        return janjiTemuPending.stream()
-        .filter(jt -> jt.getPasien().getId().equals(identifier) || 
-                      jt.getDokter().getId().equals(identifier))
+    public static List<Appointment> getFilteredPendingAppointments(String identifier){
+        //identifier is either doc id/patient id, im lazy so i combine it hehe
+        return pendingAppointmentList.stream()
+        .filter(jt -> jt.getPatient().getId().equals(identifier) || 
+                      jt.getDoctor().getId().equals(identifier))
         .collect(Collectors.toList());
     }
 
 
-    public static List<JanjiTemu> getFilteredJanjiTemuAktif(String identifier){
-        return janjiTemuAktif.stream()
-        .filter(jt -> jt.getPasien().getId().equals(identifier) || 
-                      jt.getDokter().getId().equals(identifier))
+    public static List<Appointment> getFilteredActiveAppointments(String identifier){
+        return activeAppointmentList.stream()
+        .filter(jt -> jt.getPatient().getId().equals(identifier) || 
+                      jt.getDoctor().getId().equals(identifier))
         .collect(Collectors.toList());
     }
 
 
     //will be used soon? i think idk
-    public static Dokter randomDokter(){
-        if (Global.daftarDokter.isEmpty()) return null;
+    public static Doctor randomDoctor(){
+        if (Global.doctorList.isEmpty()) return null;
         Random rand = new Random();
-        return Global.daftarDokter.get(rand.nextInt(Global.daftarDokter.size()));
+        return Global.doctorList.get(rand.nextInt(Global.doctorList.size()));
     }
 
-    public static Pasien randomPasien(){
-        if (Global.daftarPasien.isEmpty()) return null;
+    public static Patient randomPatient(){
+        if (Global.patientList.isEmpty()) return null;
         Random rand = new Random();
-        return Global.daftarPasien.get(rand.nextInt(Global.daftarPasien.size()));
+        return Global.patientList.get(rand.nextInt(Global.patientList.size()));
     }
 
-    public static Perawat randomPerawat(){
-        if (Global.daftarPerawat.isEmpty()) return null;
+    public static Nurse randomNurse(){
+        if (Global.nurseList.isEmpty()) return null;
         Random rand = new Random();
-        return Global.daftarPerawat.get(rand.nextInt(Global.daftarPerawat.size()));
+        return Global.nurseList.get(rand.nextInt(Global.receptionistList.size()));
     }
 
-    public static Ruangan temukanRuanganKosong(){
-        for (Ruangan ruangan : Global.daftarRuangan) {
-            if (ruangan.getIsTersedia()) {
+    public static Room temukanRuanganKosong(){
+        for (Room ruangan : Global.roomList) {
+            if (ruangan.getAvailability()) {
                 return ruangan;
             }
         }

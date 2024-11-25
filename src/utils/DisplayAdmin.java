@@ -1,12 +1,11 @@
 package utils;
 
-import java.util.List;
-
-import data.JanjiTemu;
+import data.Appointment;
 
 public class DisplayAdmin {
 
     public static void displayAdmin(){
+
         boolean running = true;
     
         while (running) {
@@ -54,8 +53,8 @@ public class DisplayAdmin {
     
     public static void displayAdminDokter(){
         int choice  = 1;
-        while(choice != 0){
 
+        while(choice != 0){
             System.out.println("====================================");
             System.out.println("0. Keluar");
             System.out.println("1. Lihat Dokter");
@@ -70,7 +69,7 @@ public class DisplayAdmin {
                     displayAdminDetailDokter();
                     break;
                 case 2:
-                    Global.tambahDokter();
+                    Global.addDoctor();
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -82,8 +81,8 @@ public class DisplayAdmin {
 
     public static void displayAdminPasien(){
         int choice  = 1;
-        while(choice != 0){
 
+        while(choice != 0){
             System.out.println("====================================");
             System.out.println("0. Keluar");
             System.out.println("1. Lihat Pasien");
@@ -98,7 +97,7 @@ public class DisplayAdmin {
                     displayAdminDetailDokter();
                     break;
                 case 2:
-                    Global.tambahPasien();
+                    Global.addPatient();
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -125,7 +124,7 @@ public class DisplayAdmin {
                     displayAdminDetailResepsionis();
                     break;
                 case 2:
-                    Global.tambahResepsionis();
+                    Global.addReceptionist();
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -152,7 +151,7 @@ public class DisplayAdmin {
                     displayAdminDetailPerawat();
                     break;
                 case 2:
-                    Global.tambahPerawat();
+                    Global.addNurse();
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -179,7 +178,7 @@ public class DisplayAdmin {
                     displayAdminDetailRuangan();
                     break;
                 case 2:
-                    Global.tambahRuangan();
+                    Global.addRoom();
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -215,7 +214,7 @@ public class DisplayAdmin {
                     displayAdminDetailJTPending();
                     break;
                 case 3: 
-                    Global.jadwalkanJanjiTemu();
+                    Global.scheduleAppointment();
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
                     break;
@@ -229,14 +228,14 @@ public class DisplayAdmin {
         int index = 0;
 
         while(choice != 0){
-            if(Global.janjiTemuAktif.isEmpty()){
+            if(Global.activeAppointmentList.isEmpty()){
                 System.out.println("Tidak ada janji temu yang belum disetujui");
                 return;
             }
             System.out.println("====================================");
-            JanjiTemu currJt = Global.janjiTemuAktif.get(index);
+            Appointment currJt = Global.activeAppointmentList.get(index);
             currJt.getDetail();
-            System.out.println(currJt.getStatusPersetujuan());
+            System.out.println(currJt.getAgrementStatus());
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -253,7 +252,7 @@ public class DisplayAdmin {
                 case 0:
                     break;
                 case 1:
-                    if(index < Global.janjiTemuAktif.size() - 1){
+                    if(index < Global.activeAppointmentList.size() - 1){
                         index++;
                     }                    
                     break;
@@ -263,7 +262,7 @@ public class DisplayAdmin {
                     }
                     break;
                 case 3: 
-                    Global.janjiTemuAktif.remove(index);
+                    Global.activeAppointmentList.remove(index);
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -277,14 +276,14 @@ public class DisplayAdmin {
         int index = 0;
 
         while(choice != 0){
-            if(Global.janjiTemuPending.isEmpty()){
+            if(Global.pendingAppointmentList.isEmpty()){
                 System.out.println("Tidak ada janji temu yang belum disetujui");
                 return;
             }
             System.out.println("====================================");
-            JanjiTemu currJt = Global.janjiTemuPending.get(index);
+            Appointment currJt = Global.pendingAppointmentList.get(index);
             currJt.getDetail();
-            System.out.println(currJt.getStatusPersetujuan());
+            System.out.println(currJt.getAgrementStatus());
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -301,7 +300,7 @@ public class DisplayAdmin {
                 case 0:
                     break;
                 case 1:
-                    if(index < Global.janjiTemuPending.size() - 1){
+                    if(index < Global.pendingAppointmentList.size() - 1){
                         index++;
                     }                    
                     break;
@@ -311,7 +310,7 @@ public class DisplayAdmin {
                     }
                     break;
                 case 3: 
-                    Global.janjiTemuPending.remove(index);
+                    Global.pendingAppointmentList.remove(index);
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -325,14 +324,14 @@ public class DisplayAdmin {
         int choice  = 1;
         int index = 0;
 
-        if(Global.daftarDokter.isEmpty()){
+        if(Global.doctorList.isEmpty()){
             System.out.println("Belum ada dokter yang didaftarkan");
             return;
         }
 
         while(choice != 0){
             System.out.println("====================================");
-            Global.daftarDokter.get(index).getDetail();
+            Global.doctorList.get(index).getDetail();
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -349,7 +348,7 @@ public class DisplayAdmin {
                 case 0:
                     break;
                 case 1:
-                    if(index < Global.daftarDokter.size() - 1){
+                    if(index < Global.doctorList.size() - 1){
                         index++;
                     }                    
                     break;
@@ -359,7 +358,7 @@ public class DisplayAdmin {
                     }
                     break;
                 case 3:
-                    Global.daftarDokter.get(index).editDokter();
+                    Global.doctorList.get(index).editDoctor();
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -372,14 +371,14 @@ public class DisplayAdmin {
         int choice  = 1;
         int index = 0;
 
-        if(Global.daftarPasien.isEmpty()){
+        if(Global.patientList.isEmpty()){
             System.out.println("Belum ada pasien yang didaftarkan");
             return;
         }
 
         while(choice != 0){
             System.out.println("====================================");
-            Global.daftarPasien.get(index).getDetail();
+            Global.patientList.get(index).getDetail();
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -395,7 +394,7 @@ public class DisplayAdmin {
                 case 0:
                     break;
                 case 1:
-                    if(index < Global.daftarPasien.size() - 1){
+                    if(index < Global.patientList.size() - 1){
                         index++;
                     }                    
                     break;
@@ -405,7 +404,7 @@ public class DisplayAdmin {
                     }
                     break;
                 case 3:
-                    Global.daftarPasien.get(index).editPasien();
+                    Global.patientList.get(index).editPatient();
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -419,14 +418,14 @@ public class DisplayAdmin {
         int choice  = 1;
         int index = 0;
 
-        if(Global.daftarResepsionis.isEmpty()){
+        if(Global.receptionistList.isEmpty()){
             System.out.println("Belum ada resepsionis yang didaftarkan");
             return;
         }
 
         while(choice != 0){
             System.out.println("====================================");
-            Global.daftarResepsionis.get(index).getDetail();
+            Global.receptionistList.get(index).getDetail();
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -441,7 +440,7 @@ public class DisplayAdmin {
                 case 0:
                     break;
                 case 1:
-                    if(index < Global.daftarResepsionis.size() - 1){
+                    if(index < Global.receptionistList.size() - 1){
                         index++;
                     }                    
                     break;
@@ -462,14 +461,14 @@ public class DisplayAdmin {
         int choice  = 1;
         int index = 0;
 
-        if(Global.daftarPerawat.isEmpty()){
+        if(Global.nurseList.isEmpty()){
             System.out.println("Belum ada perawat yang didaftarkan");
             return;
         }
 
         while(choice != 0){
             System.out.println("====================================");
-            Global.daftarPerawat.get(index).getDetail();
+            Global.nurseList.get(index).getDetail();
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -484,7 +483,7 @@ public class DisplayAdmin {
                 case 0:
                     break;
                 case 1:
-                    if(index < Global.daftarPerawat.size() - 1){
+                    if(index < Global.nurseList.size() - 1){
                         index++;
                     }                    
                     break;
@@ -505,14 +504,14 @@ public class DisplayAdmin {
         int choice  = 1;
         int index = 0;
 
-        if(Global.daftarRuangan.isEmpty()){
+        if(Global.roomList.isEmpty()){
             System.out.println("Belum ada pasien yang didaftarkan");
             return;
         }
 
         while(choice != 0){
             System.out.println("====================================");
-            Global.daftarRuangan.get(index).getDetail();
+            Global.roomList.get(index).getDetail();
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -527,7 +526,7 @@ public class DisplayAdmin {
                 case 0:
                     break;
                 case 1:
-                    if(index < Global.daftarRuangan.size() - 1){
+                    if(index < Global.roomList.size() - 1){
                         index++;
                     }                    
                     break;
