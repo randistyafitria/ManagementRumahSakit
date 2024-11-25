@@ -105,7 +105,6 @@ public class Init {
 
             JanjiTemu janjiTemu = new JanjiTemu(Global.generateId("JT"), appointmentDate, dokter, pasien);
             Global.janjiTemuPending.add(janjiTemu);
-
         }
 
 

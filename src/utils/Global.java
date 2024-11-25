@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.Random;
 
 import data.*;
@@ -307,6 +308,23 @@ public class Global {
         perawatListPasien.get(pr.getId()).add(p);
 
         System.out.println("Pasien Berhasil di tambahkan");
+    }
+
+    public static List<JanjiTemu> getFilteredJanjiTemuPending(String identifier){
+        //identifier is either doc id/pasien id, im lazy so i combine it hehe
+        return janjiTemuPending.stream()
+        .filter(jt -> jt.getPasien().getId().equals(identifier) || 
+                      jt.getDokter().getId().equals(identifier))
+        .collect(Collectors.toList());
+    }
+
+
+    public static List<JanjiTemu> getFilteredJanjiTemuAktif(String identifier){
+        //identifier is either doc id/pasien id, im lazy so i combine it hehe
+        return janjiTemuAktif.stream()
+        .filter(jt -> jt.getPasien().getId().equals(identifier) || 
+                      jt.getDokter().getId().equals(identifier))
+        .collect(Collectors.toList());
     }
 
 
