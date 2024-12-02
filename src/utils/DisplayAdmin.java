@@ -1,6 +1,8 @@
 package utils;
 
 import data.Appointment;
+import data.Patient;
+import data.Room;
 
 public class DisplayAdmin {
 
@@ -339,6 +341,7 @@ public class DisplayAdmin {
             System.out.println("1. Selanjutnya");
             System.out.println("2. Sebelumnya");
             System.out.println("3. Edit Dokter");
+            System.out.println("4. Assign dokter untuk pasien");
             System.out.println("====================================");
             choice = Global.scanner.nextInt();
             Global.scanner.nextLine(); 
@@ -359,6 +362,18 @@ public class DisplayAdmin {
                     break;
                 case 3:
                     Global.doctorList.get(index).editDoctor();
+                    break;
+                case 4:
+                    System.out.println("Masukkan Id / Nama Pasien");
+                    String identifier = Global.scanner.nextLine();
+                    Patient pasien = Global.searchPatient(identifier);
+                    
+                    if(pasien == null){
+                        System.out.println("Data Pasien tidak ditemukan, Mohon ulangi operasi lagi");
+                        return;
+                    }
+                    
+                    Global.assignDoctor(Global.doctorList.get(index), pasien);
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -475,6 +490,7 @@ public class DisplayAdmin {
             System.out.println("0. Keluar");
             System.out.println("1. Selanjutnya");
             System.out.println("2. Sebelumnya");
+            System.out.println("3. Assign perawat untuk pasien");
             System.out.println("====================================");
             choice = Global.scanner.nextInt();
             Global.scanner.nextLine();
@@ -491,6 +507,18 @@ public class DisplayAdmin {
                     if(index > 0){
                         index--;
                     }
+                    break;
+                case 3:
+                    System.out.println("Masukkan Id / Nama Pasien");
+                    String identifier = Global.scanner.nextLine();
+                    Patient pasien = Global.searchPatient(identifier);
+                    
+                    if(pasien == null){
+                        System.out.println("Data Pasien tidak ditemukan, Mohon ulangi operasi lagi");
+                        return;
+                    }
+                    
+                    Global.assignNurse(Global.nurseList.get(index), pasien);
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -518,6 +546,7 @@ public class DisplayAdmin {
             System.out.println("0. Keluar");
             System.out.println("1. Selanjutnya");
             System.out.println("2. Sebelumnya");
+            System.out.println("3. Assign ruangan untuk pasien");
             System.out.println("====================================");
             choice = Global.scanner.nextInt();
             Global.scanner.nextLine();
@@ -534,6 +563,19 @@ public class DisplayAdmin {
                     if(index > 0){
                         index--;
                     }
+                    break;
+                case 3:
+                    System.out.println("Masukkan Id / Nama Pasien");
+                    String identifier = Global.scanner.nextLine();
+                    Patient pasien = Global.searchPatient(identifier);
+                    
+                    if(pasien == null){
+                        System.out.println("Data Pasien tidak ditemukan, Mohon ulangi operasi lagi");
+                        return;
+                    }
+
+                    Room ru = Global.temukanRuanganKosong();
+                    ru.setForPatient(pasien);
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
