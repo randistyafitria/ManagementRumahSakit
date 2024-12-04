@@ -23,6 +23,7 @@ public class DoctorController {
             return "Input umur tidak valid. Pastikan memasukkan angka.";
         }
     }
+    
     public static String editDoctorGender(Doctor d){
         while (true) {
             System.out.print("Masukkan jenis kelamin baru (Laki Laki/Perempuan): ");
@@ -35,16 +36,19 @@ public class DoctorController {
             }
         }
     }
+
     public static String editDoctorAddress(Doctor d){
         String newInput = Global.scanner.nextLine();
         d.setAddress(newInput);
         return "Nama berhasil diubah menjadi " + d.getAddress();
     }
+
     public static String editDoctorContact(Doctor d){
         String newInput = Global.scanner.nextLine();
         d.setContact(newInput);
         return "Nama berhasil diubah menjadi " + d.getContact();
     }
+
     public static String editDoctorSpecialization(Doctor d){
         String newInput = Global.scanner.nextLine();
         d.setSpecialization(newInput);

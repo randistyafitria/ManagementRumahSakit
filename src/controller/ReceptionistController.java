@@ -3,6 +3,8 @@ package controller;
 import model.Doctor;
 import model.Nurse;
 import model.Patient;
+import model.Receptionist;
+
 import utils.Global;
 
 public class ReceptionistController{
@@ -62,5 +64,50 @@ public class ReceptionistController{
         patient.getDetail();
 
         Global.assignNurse(nurse, patient);
+    }
+
+
+    public static String editReceptionistName(Receptionist re){
+        String newInput = Global.scanner.nextLine();
+        re.setName(newInput);
+        return "Nama berhasil diubah menjadi " + re.getName();
+    }
+
+    public static String editReceptionistAge(Receptionist re){
+        System.out.print("Masukan Umur Baru: ");
+        String newInput = Global.scanner.nextLine();
+        try{
+            int newAge = Integer.parseInt(newInput);
+            re.setAge(newAge);
+            return "Umur berhasil diubah menjadi " + re.getAge();
+        } catch (NumberFormatException e) {
+            return "Input umur tidak valid. Pastikan memasukkan angka.";
+        }
+    }
+    
+    public static String editReceptionistGender(Receptionist re){
+        while (true) {
+            System.out.print("Masukkan jenis kelamin baru (Laki Laki/Perempuan): ");
+            String newInput = Global.scanner.nextLine();
+            if (newInput.equalsIgnoreCase("Laki Laki") || newInput.equalsIgnoreCase("Perempuan")) {
+                re.setGender(newInput);
+                return "Jenis kelamin berhasil diubah menjadi " + re.getGender();
+            } else {
+                return "Input tidak valid. Silakan masukkan 'Laki Laki' atau 'Perempuan'.";
+            }
+        }
+    }
+
+    public static String editReceptionistAddress(Receptionist re){
+        String newInput = Global.scanner.nextLine();
+        re.setAddress(newInput);
+        return "Nama berhasil diubah menjadi " + re.getAddress();
+    }
+
+
+    public static String editReceptionistContact(Receptionist re){
+        String newInput = Global.scanner.nextLine();
+        re.setContact(newInput);
+        return "Nama berhasil diubah menjadi " + re.getContact();
     }
 }

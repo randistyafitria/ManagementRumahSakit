@@ -13,14 +13,7 @@ import model.Patient;
 import utils.Global;
 
 public class DoctorView {
-    public static void displayDoctorDetails(Doctor d) {
-        System.out.println("====================================");
-        System.out.println("Profil Dokter:");
-        System.out.println(d.getDetail());
-        System.out.println("====================================");
-    }
-
-    public static void displayMenu(Doctor d) {
+    public static void doctorDisplay(Doctor d) {
         int choice = 1;
         while (choice != 0) {
             System.out.println("====================================");
@@ -37,7 +30,7 @@ public class DoctorView {
                 case 0:
                     break;
                 case 1:
-                    displayDoctorDetails(d);
+                    profileDisplay(d);
                     break;
                 case 2:
                     listActiveAppointment(d);
@@ -47,6 +40,32 @@ public class DoctorView {
                     break;
                 case 4:
                     listTreatedPatient(d);
+                    break;
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
+            }
+        }
+    }
+
+    public static void profileDisplay(Doctor d){
+        int choice = 1;
+        while (choice != 0) {
+            System.out.println("====================================");
+            System.out.println(d.getDetail());
+            System.out.println("====================================");
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Edit Profile");
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine();
+
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    editDoctor(d);
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -124,9 +143,10 @@ public class DoctorView {
             while(choice != 0){
                 System.out.println("====================================");
                 Patient p = pasienList.get(index);
-                p.getDetail();
+                System.out.println(p.getDetail());
+                
                 System.out.println("====================================");
-    
+                
                 System.out.println("====================================");
                 System.out.println("0. Keluar");
                 System.out.println("1. Selanjutnya");

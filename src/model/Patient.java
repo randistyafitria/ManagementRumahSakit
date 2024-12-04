@@ -46,7 +46,7 @@ public class Patient extends Person {
             "Alamat: " + getAddress() + "\n" +
             "Nomor Kontak: " + getContact() + "\n" +
             "Riwayat Medis: " + medicalHistory + "\n" +
-            "Kondisi Saat Ini : " + currentCondition + 
+            "Kondisi Saat Ini : " + currentCondition + "\n" + 
             "Saat ini sedang dirawat di ruangan: " + treatmentRoom.getRoomNumber();
         }
         
@@ -57,7 +57,7 @@ public class Patient extends Person {
         "Alamat: " + getAddress() + "\n" +
         "Nomor Kontak: " + getContact() + "\n" +
         "Riwayat Medis: " + medicalHistory + "\n" +
-        "Kondisi Saat Ini : " + currentCondition + 
+        "Kondisi Saat Ini : " + currentCondition + "\n" + 
         "Sedang tidak dirawat di ruangan";
     }
 }
