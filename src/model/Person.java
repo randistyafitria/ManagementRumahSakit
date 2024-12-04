@@ -1,4 +1,4 @@
-package data;
+package model;
 
 
 public abstract class Person {
@@ -61,14 +61,13 @@ public abstract class Person {
     public void setContact(String contact) {
         this.contact = contact;
     }
-
-
-    public void getDetail() {
-        System.out.println("ID: " + id);
-        System.out.println("Nama: " + name);
-        System.out.println("Umur: " + age);
-        System.out.println("Jenis Kelamin: " + gender);
-        System.out.println("Alamat: " + address);
-        System.out.println("Nomor Kontak: " + contact);
+    
+    public String getDetail() {
+        return "ID: " + getId() + "\n" +
+               "Nama: " + getName() + "\n" +
+               "Umur: " + getAge() + "\n" +
+               "Jenis Kelamin: " + getGender() + "\n" +
+               "Alamat: " + getAddress() + "\n" +
+               "Nomor Kontak: " + getContact() + "\n";
     }
 }

@@ -1,40 +1,15 @@
-package data;
+package view;
 
 import java.util.ArrayList;
 
+import model.Patient;
+import model.Nurse;
 import utils.Global;
 
-public class Nurse extends Person {
-    private String specialization;
-
-    public Nurse(String name, int age, String gender, String address, String contact, String nurseId, String specialization) {
-        super(name, age, gender, address, contact ,nurseId);
-        this.specialization = specialization;
-    }
-
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public void setSpecialization(String specialization){
-        this.specialization = specialization;
-    }
-
-
-    @Override
-    public void getDetail() {
-        System.out.println("ID: " + getId());
-        System.out.println("Nama: " + getName());
-        System.out.println("Umur: " + getAge());
-        System.out.println("Jenis Kelamin: " + getGender());
-        System.out.println("Alamat: " + getAddress());
-        System.out.println("Nomor Kontak: " + getContact());
-        System.out.println("Spesialisasi: " + specialization);
-    }
-
-    public void listPasienDirawat(){
-        if(Global.doctorListPatient.containsKey(getId())){
-            ArrayList<Patient> pasienList = Global.nurseListPatient.get(getId());
+public class NurseView{
+    public void listPasienDirawat(Nurse n){
+        if(Global.doctorListPatient.containsKey(n.getId())){
+            ArrayList<Patient> pasienList = Global.nurseListPatient.get(n.getId());
             int choice  = 1;
             int index = 0;
     
@@ -73,7 +48,7 @@ public class Nurse extends Person {
                         }
                         break;
                     case 3:
-                        p.editPatientCondition();
+                        PatientView.editPatientConditionDisplay(p);
                     default:
                         System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
                         break;
@@ -85,5 +60,4 @@ public class Nurse extends Person {
         }
 
     }
-
 }

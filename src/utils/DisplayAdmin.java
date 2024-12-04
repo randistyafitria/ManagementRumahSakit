@@ -1,8 +1,13 @@
 package utils;
 
-import data.Appointment;
-import data.Patient;
-import data.Room;
+import controller.RoomController;
+import model.Appointment;
+import model.Patient;
+import model.Room;
+import view.AppointmentView;
+
+import view.DoctorView;
+import view.PatientView;
 
 public class DisplayAdmin {
 
@@ -279,9 +284,9 @@ public class DisplayAdmin {
                 return;
             }
             System.out.println("====================================");
-            Appointment currJt = Global.activeAppointmentList.get(index);
-            currJt.getDetail();
-            System.out.println(currJt.getAgrementStatus());
+            Appointment currAp = Global.activeAppointmentList.get(index);
+            AppointmentView.getDetail(currAp);
+            AppointmentView.displayAgreementStatus(currAp);
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -327,9 +332,9 @@ public class DisplayAdmin {
                 return;
             }
             System.out.println("====================================");
-            Appointment currJt = Global.pendingAppointmentList.get(index);
-            currJt.getDetail();
-            System.out.println(currJt.getAgrementStatus());
+            Appointment currAp = Global.pendingAppointmentList.get(index);
+            AppointmentView.getDetail(currAp);
+            AppointmentView.displayAgreementStatus(currAp);
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -404,7 +409,7 @@ public class DisplayAdmin {
                     }
                     break;
                 case 3:
-                    Global.doctorList.get(index).editDoctor();
+                    DoctorView.editDoctor(Global.doctorList.get(index));
                     break;
                 case 4:
                     System.out.println("Masukkan Id / Nama Pasien");
@@ -462,7 +467,7 @@ public class DisplayAdmin {
                     }
                     break;
                 case 3:
-                    Global.patientList.get(index).editPatient();
+                    PatientView.editPatient(Global.patientList.get(index));
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
@@ -616,7 +621,7 @@ public class DisplayAdmin {
                     }
 
                     Room ru = Global.temukanRuanganKosong();
-                    ru.setForPatient(pasien);
+                    RoomController.setForPatient(ru, pasien);
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");

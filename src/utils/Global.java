@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
 
 import java.util.Random;
 
-import data.*;
+import model.*;
+import controller.*;
 
 public class Global {
     public static List<Doctor> doctorList = new ArrayList<>();
@@ -300,7 +301,7 @@ public class Global {
                 Appointment janjiTemu = new Appointment(generateId("JT"), date, doctor, patient);
     
                 System.out.println(date);
-                ru.setForPatient(patient);
+                RoomController.setForPatient(ru, patient);
                 pendingAppointmentList.add(janjiTemu);
     
                 System.out.println("Janji temu berhasil dijadwalkan antara " + patient.getName() + " dan " + doctor.getName() + ".");

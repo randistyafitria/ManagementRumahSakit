@@ -1,6 +1,6 @@
 package utils.auth;
 
-import data.Receptionist;
+import model.Receptionist;
 import utils.Global;
 
 public class ReceptionistAuth {
