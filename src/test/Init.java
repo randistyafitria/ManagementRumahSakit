@@ -1,11 +1,11 @@
 package test;
 
-import data.Doctor;
-import data.Appointment;
-import data.Nurse;
-import data.Receptionist;
-import data.Room;
-import data.Patient;
+import model.Appointment;
+import model.Doctor;
+import model.Nurse;
+import model.Patient;
+import model.Receptionist;
+import model.Room;
 import utils.Global;
 
 import java.util.Date;

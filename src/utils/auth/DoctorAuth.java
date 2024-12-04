@@ -1,6 +1,6 @@
 package utils.auth;
 
-import data.Doctor;
+import model.Doctor;
 import utils.Global;
 
 public class DoctorAuth {

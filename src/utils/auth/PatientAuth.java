@@ -1,7 +1,7 @@
 package utils.auth;
 
+import model.Patient;
 import utils.Global;
-import data.Patient;
 
 public class PatientAuth {
 

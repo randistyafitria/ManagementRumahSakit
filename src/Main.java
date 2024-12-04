@@ -5,10 +5,13 @@ import utils.auth.DoctorAuth;
 import utils.auth.PatientAuth;
 import utils.auth.ReceptionistAuth;
 import test.Init;
+import model.Doctor;
+import model.Patient;
+import model.Receptionist;
 
-import data.Patient;
-import data.Doctor;
-import data.Receptionist;
+import view.PatientView;
+import view.DoctorView;
+import view.ReceptionsitView;
 
 
 
@@ -44,7 +47,7 @@ public class Main {
                         System.out.println("Data Pasien tidak ditemukan");
                         break;
                     }
-                    p.patientDisplay();
+                    PatientView.patientDisplay(p);
                     break;
 
                 case 2:
@@ -53,7 +56,7 @@ public class Main {
                         System.out.println("Data Dokter tidak ditemukan");
                         break;
                     }
-                    d.doctorDisplay();
+                    DoctorView.displayMenu(d);
                     break;
 
                 case 3:
@@ -62,7 +65,7 @@ public class Main {
                         System.out.println("Data Resepsionis tidak ditemukan");
                         break;
                     }
-                    r.receptionistDisplay();
+                    ReceptionsitView.receptionistDisplay(r);
                     break;
 
                 case 4:
