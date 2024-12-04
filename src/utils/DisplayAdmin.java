@@ -3,7 +3,6 @@ package utils;
 import controller.RoomController;
 import model.Appointment;
 import model.Patient;
-import model.Room;
 import view.AppointmentView;
 
 import view.DoctorView;
@@ -573,8 +572,7 @@ public class DisplayAdmin {
                         return;
                     }
 
-                    Room ru = Global.temukanRuanganKosong();
-                    RoomController.setForPatient(ru, pasien);
+                    RoomController.setForPatient(Global.roomList.get(index), pasien);
                     break;
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
