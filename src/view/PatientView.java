@@ -28,7 +28,7 @@ public class PatientView{
                 case 0:
                     break;
                 case 1:
-                    System.out.println(p.getDetail());
+                    profileDisplay(p);
                     break;
                 case 2:
                     listActiveAppointment(p);
@@ -37,6 +37,34 @@ public class PatientView{
                     listPendingAppointment(p);
                     break;
             
+                default:
+                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
+                    break;
+            }
+        }
+    }
+
+    public static void profileDisplay(Patient p){
+        int choice = 1;
+        while(choice != 0){
+            System.out.println("====================================");
+            System.out.println(p.getDetail());
+            System.out.println("====================================");
+            System.out.println("====================================");
+            System.out.println("0. Keluar");
+            System.out.println("1. Edit Profil");
+            System.out.println("====================================");
+            choice = Global.scanner.nextInt();
+            Global.scanner.nextLine();
+
+
+            switch (choice) {
+                case 0:
+                    break;
+                case 1:
+                    editPatient(p);
+                    break;
+    
                 default:
                     System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
                     break;

@@ -24,9 +24,6 @@ public class DisplayAdmin {
             System.out.println(" 4. Kelola Resepsionis            ");
             System.out.println(" 5. Kelola Ruangan                ");
             System.out.println(" 6. Kelola Janji Temu             ");
-            System.out.println(" 7. Tambahkan User Baru           ");
-            System.out.println(" 8. Jadwalkan Janji Temu Baru     ");
-            System.out.println(" 9. Tambahkan Ruangan Baru        ");
             System.out.println("====================================");
             System.out.print("Pilih menu: ");
             int pilihan = Global.scanner.nextInt();
@@ -51,15 +48,6 @@ public class DisplayAdmin {
                 case 6:
                     displayAdminJanjiTemu();
                     break;
-                case 7: 
-                    displayAddUserChoice();
-                    break;
-                case 8: 
-                    Global.addRoom();
-                    break;
-                case 9: 
-                    Global.scheduleAppointment();
-                    break;
                 case 0:
                     running = false;
                     System.out.println("Keluar dari sistem.");
@@ -70,41 +58,6 @@ public class DisplayAdmin {
         }
     }
 
-    
-
-    public static void displayAddUserChoice(){
-        int choice  = 1;
-        while(choice != 0){
-            System.out.println("====================================");
-            System.out.println("0. Keluar");
-            System.out.println("1. Daftarkan Dokter Baru");
-            System.out.println("2. Daftarkan Pasien Baru");
-            System.out.println("3. Daftarkan Perawat Baru");
-            System.out.println("4. Daftarkan Resepsionis Baru");
-            System.out.println("====================================");
-            choice = Global.scanner.nextInt();
-            Global.scanner.nextLine(); 
-            switch (choice) {
-                case 0:
-                    break;
-                case 1:
-                    Global.addDoctor();
-                    break;
-                case 2:
-                    Global.addPatient();
-                    break;
-                case 3:
-                    Global.addNurse();
-                    break;
-                case 4:
-                    Global.addReceptionist();
-                    break;
-                default:
-                    System.out.println("Mohon pilih sesuai angka yang sudah disediakan");
-                    break;
-            }
-        }
-    }
     
     public static void displayAdminDokter(){
         int choice  = 1;
@@ -381,7 +334,7 @@ public class DisplayAdmin {
 
         while(choice != 0){
             System.out.println("====================================");
-            Global.doctorList.get(index).getDetail();
+            System.out.println(Global.doctorList.get(index).getDetail());
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -441,7 +394,7 @@ public class DisplayAdmin {
 
         while(choice != 0){
             System.out.println("====================================");
-            Global.patientList.get(index).getDetail();
+            System.out.println(Global.patientList.get(index).getDetail());
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -488,7 +441,7 @@ public class DisplayAdmin {
 
         while(choice != 0){
             System.out.println("====================================");
-            Global.receptionistList.get(index).getDetail();
+            System.out.println(Global.receptionistList.get(index).getDetail());
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -530,7 +483,7 @@ public class DisplayAdmin {
 
         while(choice != 0){
             System.out.println("====================================");
-            Global.nurseList.get(index).getDetail();
+            System.out.println(Global.nurseList.get(index).getDetail());
             System.out.println("====================================");
 
             System.out.println("====================================");
@@ -585,7 +538,7 @@ public class DisplayAdmin {
 
         while(choice != 0){
             System.out.println("====================================");
-            Global.roomList.get(index).getDetail();
+            System.out.println(Global.roomList.get(index).getDetail());
             System.out.println("====================================");
 
             System.out.println("====================================");
