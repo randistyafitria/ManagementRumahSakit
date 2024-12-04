@@ -71,16 +71,16 @@ public class Init {
 
         
         Global.roomList.add(new Room(1, "1 Kasur", true));
-        Global.roomList.add(new Room(2, "2 Kasur", false));
+        Global.roomList.add(new Room(2, "2 Kasur", true));
         Global.roomList.add(new Room(3, "3 Kasur", true));
-        Global.roomList.add(new Room(4, "1 Kasur", false));
+        Global.roomList.add(new Room(4, "1 Kasur", true));
         Global.roomList.add(new Room(5, "2 Kasur", true));
-        Global.roomList.add(new Room(6, "3 Kasur", false));
+        Global.roomList.add(new Room(6, "3 Kasur", true));
         Global.roomList.add(new Room(7, "1 Kasur", true));
-        Global.roomList.add(new Room(8, "2 Kasur", false));
+        Global.roomList.add(new Room(8, "2 Kasur", true));
         Global.roomList.add(new Room(9, "3 Kasur", true));
         Global.roomList.add(new Room(10, "1 Kasur", true));
-        Global.roomList.add(new Room(11, "2 Kasur", false));
+        Global.roomList.add(new Room(11, "2 Kasur", true));
         Global.roomList.add(new Room(12, "3 Kasur", true));
         
 
