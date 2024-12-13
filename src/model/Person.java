@@ -70,4 +70,14 @@ public abstract class Person {
                "Alamat: " + getAddress() + "\n" +
                "Nomor Kontak: " + getContact() + "\n";
     }
+
+    @Deprecated
+    public void oldGetDetail() {
+        System.out.println("ID: " + getId());
+        System.out.println("Nama: " + getName());
+        System.out.println("Umur: " + getAge());
+        System.out.println("Jenis Kelamin: " + getGender());
+        System.out.println("Alamat: " + getAddress());
+        System.out.println("Nomor Kontak: " + getContact());
+}
 }

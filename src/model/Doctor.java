@@ -1,11 +1,14 @@
 package model;
 
-public class Doctor extends Person {
+public class Doctor extends Person implements MedicalStaff{
     private String specialization;
     private int yearsOfExperience;
 
     public Doctor(String name, int age, String gender, String address, String contact, String id, String specialization, int yearsOfExperience) {
         super(name, age, gender, address, contact, id);
+        if (yearsOfExperience < MIN_YEARS_OF_EXPERIENCE) {
+            throw new IllegalArgumentException("Years of experience cannot be less than " + MIN_YEARS_OF_EXPERIENCE + " years.");
+        }
         this.specialization = specialization;
         this.yearsOfExperience = yearsOfExperience;
     }
