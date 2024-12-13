@@ -5,7 +5,7 @@ import utils.auth.NurseAuth;
 import utils.auth.PatientAuth;
 import utils.auth.ReceptionistAuth;
 
-import test.Init;
+import utils.test.Init;
 
 import model.Doctor;
 import model.Patient;

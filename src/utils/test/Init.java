@@ -1,4 +1,4 @@
-package test;
+package utils.test;
 
 import model.Appointment;
 import model.Doctor;
