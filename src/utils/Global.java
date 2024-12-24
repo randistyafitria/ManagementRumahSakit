@@ -329,7 +329,7 @@ public class Global {
         doctorListPatient.put(d.getId(), new ArrayList<>());
         doctorListPatient.get(d.getId()).add(p);
 
-        System.out.println("Pasien Berhasil di tambahkan");
+        System.out.println("Pasien Berhasil ditambahkan");
     }
 
     public static void assignNurse(Nurse pr, Patient p){
@@ -341,7 +341,7 @@ public class Global {
         nurseListPatient.put(pr.getId(), new ArrayList<>());
         nurseListPatient.get(pr.getId()).add(p);
 
-        System.out.println("Pasien Berhasil di tambahkan");
+        System.out.println("Pasien Berhasil ditambahkan");
     }
 
     public static List<Appointment> getFilteredPendingAppointments(String identifier){
@@ -377,7 +377,7 @@ public class Global {
     public static Nurse randomNurse(){
         if (Global.nurseList.isEmpty()) return null;
         Random rand = new Random();
-        return Global.nurseList.get(rand.nextInt(Global.receptionistList.size()));
+        return Global.nurseList.get(rand.nextInt(Global.nurseList.size()));
     }
 
     public static Room temukanRuanganKosong(){

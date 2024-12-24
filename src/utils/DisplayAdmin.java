@@ -16,6 +16,9 @@ public class DisplayAdmin {
     
         while (running) {
             System.out.println("====================================");
+            System.out.println("=         BY : Kelompok 2          =");
+            System.out.println("====================================");
+            System.out.println("====================================");
             System.out.println(" 0. Keluar                        ");
             System.out.println(" 1. Kelola Dokter                 ");
             System.out.println(" 2. Kelola Pasien                 ");
