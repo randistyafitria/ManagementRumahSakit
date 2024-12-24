@@ -67,9 +67,16 @@ public class Init {
         Global.receptionistList.add(new Receptionist("Fitriani Puspita", 22, "Perempuan", "Apa", "923497890", Global.generateId("RS")));
         Global.receptionistList.add(new Receptionist("Agus Saputra", 40, "Laki-Laki", "Apa", "923498901", Global.generateId("RS")));
         Global.receptionistList.add(new Receptionist("Nurul Hidayah", 29, "Perempuan", "Apa", "923499012", Global.generateId("RS")));
-
-
         
+        Global.nurseList.add(new Nurse("Ani Suryani", 45, "Perempuan", "Jakarta", "0812345678", Global.generateId("NS"), "Pediatri"));
+        Global.nurseList.add(new Nurse("Budi Santoso", 38, "Laki-Laki", "Bandung", "0819876543", Global.generateId("NS"), "Bedah"));
+        Global.nurseList.add(new Nurse("Citra Dewi", 33, "Perempuan", "Surabaya", "0821345678", Global.generateId("NS"), "Onkologi"));
+        Global.nurseList.add(new Nurse("Dedi Irawan", 40, "Laki-Laki", "Medan", "0856789123", Global.generateId("NS"), "Kardiologi"));
+        Global.nurseList.add(new Nurse("Eka Pratama", 29, "Laki-Laki", "Yogyakarta", "0876543210", Global.generateId("NS"), "Ortopedi"));
+        Global.nurseList.add(new Nurse("Fitri Handayani", 35, "Perempuan", "Palembang", "0898765432", Global.generateId("NS"), "Neurologi"));
+        Global.nurseList.add(new Nurse("Gita Maharani", 31, "Perempuan", "Makassar", "0812123456", Global.generateId("NS"), "Gawat Darurat"));
+        
+
         Global.roomList.add(new Room(1, "1 Kasur", true));
         Global.roomList.add(new Room(2, "2 Kasur", true));
         Global.roomList.add(new Room(3, "3 Kasur", true));

@@ -9,6 +9,9 @@ public class ReceptionsitView{
         int choice = 1;
         while(choice != 0){
             System.out.println("====================================");
+            System.out.println("=         BY : Kelompok 2          =");
+            System.out.println("====================================");
+            System.out.println("====================================");
             System.out.println("0. Keluar");
             System.out.println("1. Lihat Profile");
             System.out.println("2. Jadwalkan Janji Temu");
