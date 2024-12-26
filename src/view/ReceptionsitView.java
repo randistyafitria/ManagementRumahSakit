@@ -16,7 +16,7 @@ public class ReceptionsitView{
             System.out.println("1. Lihat Profile");
             System.out.println("2. Jadwalkan Janji Temu");
             System.out.println("3. Assign dokter kepada pasien");
-            System.out.println("4. Assign dokter kepada pasien");
+            System.out.println("4. Assign perawat kepada pasien");
             System.out.println("====================================");
             choice = Global.scanner.nextInt();
             Global.scanner.nextLine();
