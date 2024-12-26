@@ -28,11 +28,11 @@ public class Main {
             System.out.println("=         BY : Kelompok 2          =");
             System.out.println("====================================");
             System.out.println("Rizky Alay H             23051204118");
-            System.out.println("Helmi Shidqi             23051204118");
-            System.out.println("M. Gus Sairi             23051204118");
-            System.out.println("Randistya Fitria         23051204118");
-            System.out.println("M. Satryo R.             23051204118");
-            System.out.println("M. Rafdi Fawwas N.       23051204118");
+            System.out.println("Helmi Shidqi             23051204124");
+            System.out.println("M. Gus Sairi             23051204126");
+            System.out.println("Randistya Fitria         23051204127");
+            System.out.println("M. Satryo R.             23051204144");
+            System.out.println("M. Rafdi Fawwas N.       23051204145");
             System.out.println("====================================");
             System.out.println("=   Sistem Manajemen Rumah Sakit   =");
             System.out.println("====================================");
