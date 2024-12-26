@@ -1,4 +1,3 @@
-import utils.DisplayAdmin;
 import utils.Global;
 import utils.auth.DoctorAuth;
 import utils.auth.NurseAuth;
@@ -13,6 +12,7 @@ import model.Receptionist;
 import model.Nurse;
 
 import view.PatientView;
+import view.DisplayAdmin;
 import view.DoctorView;
 import view.NurseView;
 import view.ReceptionsitView;

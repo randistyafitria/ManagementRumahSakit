@@ -1,12 +1,9 @@
-package utils;
+package view;
 
 import controller.RoomController;
 import model.Appointment;
 import model.Patient;
-import view.AppointmentView;
-
-import view.DoctorView;
-import view.PatientView;
+import utils.Global;
 
 public class DisplayAdmin {
 
@@ -33,22 +30,22 @@ public class DisplayAdmin {
     
             switch (pilihan) {
                 case 1:
-                    displayAdminDokter();
+                    adminDisplayDoctor();
                     break;
                 case 2:
-                    displayAdminPasien();
+                    adminDisplayPatient();
                     break;
                 case 3:
-                    displayAdminPerawat();
+                    adminDisplayNurse();
                     break;
                 case 4:
-                    displayAdminResepsionis();
+                    adminDisplayReceptionist();
                     break;
                 case 5:
-                    displayAdminRuangan();
+                    adminDisplayRoom();
                     break;
                 case 6:
-                    displayAdminJanjiTemu();
+                    adminDisplayAppointment();
                     break;
                 case 0:
                     running = false;
@@ -61,7 +58,7 @@ public class DisplayAdmin {
     }
 
     
-    public static void displayAdminDokter(){
+    public static void adminDisplayDoctor(){
         int choice  = 1;
 
         while(choice != 0){
@@ -76,7 +73,7 @@ public class DisplayAdmin {
                 case 0:
                     break;
                 case 1:
-                    displayAdminDetailDokter();
+                    adminDisplayDetailDoctor();
                     break;
                 case 2:
                     Global.addDoctor();
@@ -89,7 +86,7 @@ public class DisplayAdmin {
         
     }
 
-    public static void displayAdminPasien(){
+    public static void adminDisplayPatient(){
         int choice  = 1;
 
         while(choice != 0){
@@ -104,7 +101,7 @@ public class DisplayAdmin {
                 case 0:
                     break;
                 case 1:
-                    displayAdminDetailDokter();
+                    adminDisplayDetailPatient();
                     break;
                 case 2:
                     Global.addPatient();
@@ -116,7 +113,7 @@ public class DisplayAdmin {
         }
     }
 
-    public static void displayAdminResepsionis(){
+    public static void adminDisplayReceptionist(){
         int choice  = 1;
         while(choice != 0){
 
@@ -131,7 +128,7 @@ public class DisplayAdmin {
                 case 0:
                     break;
                 case 1:
-                    displayAdminDetailResepsionis();
+                    adminDisplayDetailReceptionist();
                     break;
                 case 2:
                     Global.addReceptionist();
@@ -143,7 +140,7 @@ public class DisplayAdmin {
         }
     }
 
-    public static void displayAdminPerawat(){
+    public static void adminDisplayNurse(){
         int choice  = 1;
         while(choice != 0){
 
@@ -158,7 +155,7 @@ public class DisplayAdmin {
                 case 0:
                     break;
                 case 1:
-                    displayAdminDetailPerawat();
+                    adminDisplayDetailNurse();
                     break;
                 case 2:
                     Global.addNurse();
@@ -170,7 +167,7 @@ public class DisplayAdmin {
         }
     }
 
-    public static void displayAdminRuangan(){
+    public static void adminDisplayRoom(){
         int choice  = 1;
         while(choice != 0){
 
@@ -185,7 +182,7 @@ public class DisplayAdmin {
                 case 0:
                     break;
                 case 1:
-                    displayAdminDetailRuangan();
+                    adminDisplayDetailRoom();
                     break;
                 case 2:
                     Global.addRoom();
@@ -198,7 +195,7 @@ public class DisplayAdmin {
     }
 
 
-    public static void displayAdminJanjiTemu(){
+    public static void adminDisplayAppointment(){
         int choice  = 1;
         while(choice != 0){
 
@@ -214,10 +211,10 @@ public class DisplayAdmin {
                 case 0:
                     break;
                 case 1:
-                    displayAdminDetailJTAktif();;
+                    adminDisplayDetailActiveAppointment();;
                     break;
                 case 2:
-                    displayAdminDetailJTPending();
+                    adminDisplayDetailPendingAppointment();
                     break;
                 case 3: 
                     Global.scheduleAppointment();
@@ -229,7 +226,7 @@ public class DisplayAdmin {
     }
 
 
-    public static void displayAdminDetailJTAktif(){
+    public static void adminDisplayDetailActiveAppointment(){
         int choice = 1;
         int index = 0;
 
@@ -277,7 +274,7 @@ public class DisplayAdmin {
         }
     }
 
-    public static void displayAdminDetailJTPending(){
+    public static void adminDisplayDetailPendingAppointment(){
         int choice = 1;
         int index = 0;
 
@@ -325,7 +322,7 @@ public class DisplayAdmin {
         }
     }
 
-    public static void displayAdminDetailDokter(){
+    public static void adminDisplayDetailDoctor(){
         int choice  = 1;
         int index = 0;
 
@@ -385,7 +382,7 @@ public class DisplayAdmin {
         }
     }
 
-    public static void displayAdminDetailPasien(){
+    public static void adminDisplayDetailPatient(){
         int choice  = 1;
         int index = 0;
 
@@ -432,7 +429,7 @@ public class DisplayAdmin {
     }
 
 
-    public static void displayAdminDetailResepsionis(){
+    public static void adminDisplayDetailReceptionist(){
         int choice  = 1;
         int index = 0;
 
@@ -474,7 +471,7 @@ public class DisplayAdmin {
         }
     }
 
-    public static void displayAdminDetailPerawat(){
+    public static void adminDisplayDetailNurse(){
         int choice  = 1;
         int index = 0;
 
@@ -529,7 +526,7 @@ public class DisplayAdmin {
         }
     }
 
-    public static void displayAdminDetailRuangan(){
+    public static void adminDisplayDetailRoom(){
         int choice  = 1;
         int index = 0;
 
